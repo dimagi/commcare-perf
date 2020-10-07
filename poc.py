@@ -38,15 +38,14 @@ class WebsiteUser(HttpUser):
         assert('Show Full Menu' in response.text)
 
     @task
-    def break_locks(self):
+    def case_list(self):
         response = self.client.post(
-            self.formplayer_host + "/break_locks/",
+            self.formplayer_host + "/navigate_menu/",
             json={
+                "app_id": self.build_id,
                 "domain": self.domain,
+                "locale": "en",
                 "username": os.environ['LOCUST_USERNAME'],
-                "restoreAs": None,    # TODO?
             },
             cookies=response.cookies,
         )
-        assert(response.status_code == 200)
-        assert(response.json()['type'] == 'success')
