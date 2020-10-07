@@ -8,7 +8,11 @@ class WebsiteUser(HttpUser):
 
     # TODO: external config files for different environments?
     #host = "https://staging.commcarehq.org"
+    #formplayer_host = "/formplayer"
+    #build_id = "33786ebd596943688cfee14b486cc85f"
+
     host = "http://localhost:8000"
+    build_id = "8eedfbd8a2ec4ab6babfcbfc44366019"
 
     domain = "bosco"
 
@@ -27,7 +31,7 @@ class WebsiteUser(HttpUser):
         assert('Sign In' not in response.text)  # make sure we weren't just redirected back to login
 
     @task
-    def dashboard(self):
-        response = self.client.get("/a/bosco/dashboard/project/")
+    def web_apps(self):
+        response = self.client.get(f'/a/{self.domain}/cloudcare/apps/v2/#{{"appId":"{self.build_id}"}}')
         assert(response.status_code == 200)
-        assert('fcc-reports' in response.text)
+        assert('Show Full Menu' in response.text)
