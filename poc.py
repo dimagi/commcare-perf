@@ -53,6 +53,13 @@ class WebsiteUser(HttpUser):
         all(e['id'] in self.case_ids for e in data['entities'])
 
     @task
+    def case_details(self):
+        data = self._formplayer_post("get_details", extra_json={
+            "selections": [2, next(iter(self.case_ids))],
+        })
+        assert(len(data['details']) == 4)   # 4 tabs in this detail
+
+    @task
     def form_entry(self):
         data = self._navigate_menu([2, next(iter(self.case_ids))], name="form entry")
         assert('instanceXml' in data)
