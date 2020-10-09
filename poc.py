@@ -35,33 +35,45 @@ class WebsiteUser(HttpUser):
         assert('Sign In' not in response.text)  # make sure we weren't just redirected back to login
 
     @task
+    def home_screen(self):
+        data = self._formplayer_post("navigate_menu_start")
+        assert(data['title'] == 'Music')
+        assert(len(data['commands']) == 7)
+
+    @task
     def menu_list(self):
-        data = self._navigate_menu(name="Web Apps: app-specific main menu")
+        data = self._navigate_menu(name="menu")
         assert(data['title'] == 'Music')
         assert(len(data['commands']) == 7)
 
     @task
     def case_list(self):
-        data = self._navigate_menu([1], name="Web Apps: case list")    # click on second menu in main menu list
+        data = self._navigate_menu([1], name="case list")    # click on second menu in main menu list
         assert(data['title'] == 'Update Song Ratings & Year')
         all(e['id'] in self.case_ids for e in data['entities'])
 
     @task
     def form_entry(self):
-        data = self._navigate_menu([2, next(iter(self.case_ids))], name="Web Apps: form entry")
+        data = self._navigate_menu([2, next(iter(self.case_ids))], name="form entry")
         assert('instanceXml' in data)
 
     def _navigate_menu(self, selections=None, name=None):
-        response = self.client.post(
-            self.formplayer_host + "/navigate_menu/",
-            json={
-                "app_id": self.build_id,
-                "domain": self.domain,
-                "locale": "en",
-                "username": os.environ['LOCUST_USERNAME'],
-                "selections": selections or [],
-            },
-            name=name,
-        )
+        return self._formplayer_post("navigate_menu", extra_json={
+            "selections": selections or [],
+        }, name=name)
+
+    def _formplayer_post(self, command, extra_json=None, name=None):
+        json = {
+            "app_id": self.build_id,
+            "domain": self.domain,
+            "locale": "en",
+            "username": os.environ['LOCUST_USERNAME'],
+        }
+        if extra_json:
+            json.update(extra_json)
+        name = name or command
+
+        response = self.client.post(f"{self.formplayer_host}/{command}/", json=json, name=name)
+
         assert(response.status_code == 200)
         return response.json()
