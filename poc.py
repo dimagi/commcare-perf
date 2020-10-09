@@ -17,6 +17,9 @@ class WebsiteUser(HttpUser):
 
     domain = "bosco"
 
+    # TODO: Make API call for cases with owner_id
+    case_ids = {'f890e903-d114-4017-8e46-16321ab81f46', '80a2e92c-9e90-4fbd-832f-d73fda2240c8'}
+
     def on_start(self):
         response = self.client.get(f'/a/{self.domain}/login/')   # get cookies
         response = self.client.post(
@@ -32,13 +35,23 @@ class WebsiteUser(HttpUser):
         assert('Sign In' not in response.text)  # make sure we weren't just redirected back to login
 
     @task
-    def web_apps(self):
-        response = self.client.get(f'/a/{self.domain}/cloudcare/apps/v2/#{{"appId":"{self.build_id}"}}')
-        assert(response.status_code == 200)
-        assert('Show Full Menu' in response.text)
+    def menu_list(self):
+        data = self._navigate_menu(name="Web Apps: app-specific main menu")
+        assert(data['title'] == 'Music')
+        assert(len(data['commands']) == 7)
 
     @task
     def case_list(self):
+        data = self._navigate_menu([1], name="Web Apps: case list")    # click on second menu in main menu list
+        assert(data['title'] == 'Update Song Ratings & Year')
+        all(e['id'] in self.case_ids for e in data['entities'])
+
+    @task
+    def form_entry(self):
+        data = self._navigate_menu([2, next(iter(self.case_ids))], name="Web Apps: form entry")
+        assert('instanceXml' in data)
+
+    def _navigate_menu(self, selections=None, name=None):
         response = self.client.post(
             self.formplayer_host + "/navigate_menu/",
             json={
@@ -46,6 +59,9 @@ class WebsiteUser(HttpUser):
                 "domain": self.domain,
                 "locale": "en",
                 "username": os.environ['LOCUST_USERNAME'],
+                "selections": selections or [],
             },
-            cookies=response.cookies,
+            name=name,
         )
+        assert(response.status_code == 200)
+        return response.json()
