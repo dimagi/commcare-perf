@@ -1,5 +1,6 @@
 import os
 from locust import HttpUser, between, task
+from pyquery import PyQuery
 
 
 # env LOCUST_USERNAME=$LOCUST_USERNAME env LOCUST_PASSWORD=$LOCUST_PASSWORD locust -f poc.py --headless -u 1 -r 1
@@ -21,13 +22,18 @@ class WebsiteUser(HttpUser):
     case_ids = {'f890e903-d114-4017-8e46-16321ab81f46', '80a2e92c-9e90-4fbd-832f-d73fda2240c8'}
 
     def on_start(self):
-        response = self.client.get(f'/a/{self.domain}/login/')   # get cookies
+        # Get csrf token for post
+        response = self.client.get(f'/a/{self.domain}/login/')
+        pq = PyQuery(response.content)
+        form_token = pq("input[name='csrfmiddlewaretoken']")[0].attrib['value']
+
         response = self.client.post(
             f'/a/{self.domain}/login/',
             {
                 "auth-username": os.environ['LOCUST_USERNAME'],
                 "auth-password": os.environ['LOCUST_PASSWORD'],
                 "cloud_care_login_view-current_step": ['auth'],     # fake out two_factor ManagementForm
+                "csrfmiddlewaretoken": form_token,
             },
             headers={"X-CSRFToken": response.cookies.get('csrftoken')}
         )
