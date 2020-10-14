@@ -1,2 +1,1 @@
 locust==1.2.3
-pyquery==1.4.1

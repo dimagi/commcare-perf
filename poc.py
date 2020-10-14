@@ -1,6 +1,5 @@
 import os
 from locust import HttpUser, between, task
-from pyquery import PyQuery
 
 
 # env LOCUST_USERNAME=$LOCUST_USERNAME env LOCUST_PASSWORD=$LOCUST_PASSWORD locust -f poc.py --headless -u 1 -r 1
@@ -23,20 +22,23 @@ class WebsiteUser(HttpUser):
 
     def on_start(self):
         # Get csrf token for post
-        response = self.client.get(f'/a/{self.domain}/login/')
-        pq = PyQuery(response.content)
-        form_token = pq("input[name='csrfmiddlewaretoken']")[0].attrib['value']
+        login_url = f'/a/{self.domain}/login/'
+        response = self.client.get(login_url)
 
+        # Log in
         response = self.client.post(
-            f'/a/{self.domain}/login/',
+            login_url,
             {
                 "auth-username": os.environ['LOCUST_USERNAME'],
                 "auth-password": os.environ['LOCUST_PASSWORD'],
                 "cloud_care_login_view-current_step": ['auth'],     # fake out two_factor ManagementForm
-                "csrfmiddlewaretoken": form_token,
             },
-            headers={"X-CSRFToken": response.cookies.get('csrftoken')}
+            headers={
+                "X-CSRFToken": self.client.cookies.get('csrftoken'),
+                "REFERER": f'{self.host}{login_url}',               # csrf requires this for secure requests
+            },
         )
+
         assert(response.status_code == 200)
         assert('Sign In' not in response.text)  # make sure we weren't just redirected back to login
 
