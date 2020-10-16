@@ -1,36 +1,39 @@
 import os
+import yaml
 from locust import HttpUser, between, task
 
 
-# env LOCUST_USERNAME=$LOCUST_USERNAME env LOCUST_PASSWORD=$LOCUST_PASSWORD locust -f poc.py --headless -u 1 -r 1
 class WebsiteUser(HttpUser):
     wait_time = between(5, 15)
 
-    # TODO: external config files for different environments?
-    #host = "https://staging.commcarehq.org"
-    #formplayer_host = "/formplayer"
-    #build_id = "33786ebd596943688cfee14b486cc85f"
-
-    host = "http://localhost:8000"
-    formplayer_host = "http://localhost:8080"
-    build_id = "8eedfbd8a2ec4ab6babfcbfc44366019"
-
-    domain = "bosco"
+    host = "https://staging.commcarehq.org"
+    formplayer_host = "/formplayer"             # settings.FORMPLAYER_URL
 
     # TODO: Make API call for cases with owner_id
     case_ids = {'f890e903-d114-4017-8e46-16321ab81f46', '80a2e92c-9e90-4fbd-832f-d73fda2240c8'}
 
     def on_start(self):
-        # Get csrf token for post
+        self._read_config()
+        self._log_in()
+        self._get_build_id()
+
+    def _read_config(self):
+        with open("config.yaml") as f:
+            config = yaml.safe_load(f)
+            self.domain = config['domain']
+            self.login_as = config['login_as']
+            self.app_id = config['app_id']
+            self.username = os.environ.get('LOCUST_USERNAME')
+            self.password = os.environ.get('LOCUST_PASSWORD')
+
+    def _log_in(self):
         login_url = f'/a/{self.domain}/login/'
         response = self.client.get(login_url)
-
-        # Log in
         response = self.client.post(
             login_url,
             {
-                "auth-username": os.environ['LOCUST_USERNAME'],
-                "auth-password": os.environ['LOCUST_PASSWORD'],
+                "auth-username": self.username,
+                "auth-password": self.password,
                 "cloud_care_login_view-current_step": ['auth'],     # fake out two_factor ManagementForm
             },
             headers={
@@ -38,9 +41,18 @@ class WebsiteUser(HttpUser):
                 "REFERER": f'{self.host}{login_url}',               # csrf requires this for secure requests
             },
         )
-
         assert(response.status_code == 200)
         assert('Sign In' not in response.text)  # make sure we weren't just redirected back to login
+
+    def _get_build_id(self):
+        response = self.client.get(f'/a/{self.domain}/cloudcare/apps/v2/?option=apps', name='Web Apps apps')
+        assert(response.status_code == 200)
+        build_id_map = {
+            app['copy_of']: app['_id']
+            for app in response.json()
+        }
+        assert(self.app_id in build_id_map)
+        self.build_id = build_id_map[self.app_id]
 
     @task
     def home_screen(self):
@@ -82,7 +94,8 @@ class WebsiteUser(HttpUser):
             "app_id": self.build_id,
             "domain": self.domain,
             "locale": "en",
-            "username": os.environ['LOCUST_USERNAME'],
+            "restoreAs": self.login_as,
+            "username": self.username,
         }
         if extra_json:
             json.update(extra_json)
