@@ -1,6 +1,9 @@
 import os
 import yaml
+
+from collections import defaultdict
 from locust import HttpUser, between, task
+from lxml import etree
 
 
 class WebsiteUser(HttpUser):
@@ -9,13 +12,11 @@ class WebsiteUser(HttpUser):
     host = "https://staging.commcarehq.org"
     formplayer_host = "/formplayer"             # settings.FORMPLAYER_URL
 
-    # TODO: Make API call for cases with owner_id
-    case_ids = {'f890e903-d114-4017-8e46-16321ab81f46', '80a2e92c-9e90-4fbd-832f-d73fda2240c8'}
-
     def on_start(self):
         self._read_config()
         self._log_in()
         self._get_build_id()
+        self._restore()          # initial restore to populate self.patient_case_ids
 
     def _read_config(self):
         with open("config.yaml") as f:
@@ -54,34 +55,49 @@ class WebsiteUser(HttpUser):
         assert(self.app_id in build_id_map)
         self.build_id = build_id_map[self.app_id]
 
-    @task
-    def home_screen(self):
-        data = self._formplayer_post("navigate_menu_start")
-        assert(data['title'] == 'Music')
-        assert(len(data['commands']) == 7)
+    def _restore(self):
+        url = f'/a/{self.domain}/phone/restore/{self.build_id}/?skip_fixtures=true'
+        if self.login_as:
+            url += f'&as={self.login_as}@{self.domain}.commcarehq.org'
+        response = self.client.get(url, name='Restore')
+        assert(response.status_code == 200)
+
+        namespaces = {None: 'http://commcarehq.org/case/transaction/v2'}
+        self.case_ids = defaultdict(set)
+        root = etree.fromstring(response.text)
+        for case in root.findall('case', namespaces=namespaces):
+            case_type = case.findall('create/case_type', namespaces=namespaces)[0].text
+            self.case_ids[case_type].add(case.attrib.get('case_id'))
+
+    def _get_case_id(self, case_type):
+        return next(iter(self.case_ids[case_type]))
 
     @task
-    def menu_list(self):
-        data = self._navigate_menu(name="menu")
-        assert(data['title'] == 'Music')
-        assert(len(data['commands']) == 7)
+    def home_screen(self):
+        data = self._formplayer_post("navigate_menu_start", name="Start")
+        assert(data['title'] == 'NY Communicable Disease Case Management System (NY-CDCMS)')
+        assert(len(data['commands']) == 32)
 
     @task
     def case_list(self):
-        data = self._navigate_menu([1], name="case list")    # click on second menu in main menu list
-        assert(data['title'] == 'Update Song Ratings & Year')
-        all(e['id'] in self.case_ids for e in data['entities'])
+        # All Cases is the sixth command in the main menu
+        data = self._navigate_menu([5], name="All Cases case list")
+        assert(data['title'] == 'All Cases')
+        assert(len(data['entities']))       # should return at least one case
 
     @task
     def case_details(self):
-        data = self._formplayer_post("get_details", extra_json={
-            "selections": [2, next(iter(self.case_ids))],
+        # Select All Cases, then a case
+        data = self._formplayer_post("get_details", name="Case Detail", extra_json={
+            "selections": [5, self._get_case_id("patient")],
         })
-        assert(len(data['details']) == 4)   # 4 tabs in this detail
+        assert(len(data['details']) == 5)   # 5 tabs in this detail
 
     @task
     def form_entry(self):
-        data = self._navigate_menu([2, next(iter(self.case_ids))], name="form entry")
+        # Select All Cases, then a case, then second command is CI form
+        data = self._navigate_menu([5, self._get_case_id("patient"), 2], name="CI Form")
+        assert(data['title'] == 'Case Investigation')
         assert('instanceXml' in data)
 
     def _navigate_menu(self, selections=None, name=None):
