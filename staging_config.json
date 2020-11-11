@@ -1,0 +1,39 @@
+{
+    "SEARCH_NAMES": [
+        "Aki", "Graham", "Samic", "Jet", "Petty", "Knack", "Elle", "Leer", "Mike", "John",
+        "Rick", "Manny", "Bud", "Reggie", "Trate", "Deb", "Holly", "Utant", "Yu", "Penny",
+        "Mick", "Paul", "Clark", "Rib", "Tube", "Sir", "Kim", "Ville", "Louis", "Mello",
+        "Marsha", "Moe", "Thegrass", "Smith", "Cooke", "Edoh", "Gail", "Sharon", "Faye", "Anna",
+        "Jim", "Mal", "Aaron", "Practice", "Mull", "Zack", "Lou", "Zing", "Tara", "Zona",
+        "Carrie", "Abel", "Body", "Jimmy", "Frank", "Manuel", "Labor", "Phil", "Erup", "Doug",
+        "Mel", "Chip", "Paige", "Turner", "Sue", "Dante", "Gene", "Jacket", "Sven", "Ed",
+        "Matt", "Bill", "Emia", "Zupp", "Greta", "Life", "Barney", "Cull", "Eda", "Barry",
+        "Monty", "Minnie", "Mack", "Strone", "Owen", "Lewis", "Kat", "Sal", "Joyce", "Tick",
+        "Ty", "Ira", "Shee", "Marcus", "Sil", "Antro", "Mark", "Ette", "Poppa", "Tom"
+    ],
+    "FUNC_USER_CHECK_IN_FORM": {
+        "selections":"0", "title1":"Check In","title2":"Proceed to Check Out"
+    },
+    "FUNC_USER_CHECK_IN": {
+        "answers-key":"4", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_HOME_SCREEN": {
+        "title":"sluTest - NY Communicable Disease Case Management System (NY-CDCMS)"
+    },
+    "FUNC_CASE_LIST": {
+        "selections":"5", "title":"All Cases"
+    },
+    "FUNC_CASE_DETAILS": {
+        "selections":"5", "checkKey":"details", "checkLen":5
+    },
+    "FUNC_FORM_ENTRY": {
+        "selections":"5", "title":"Case Investigation"
+    },
+    "FUNC_CASE_CLAIM_SEARCH": {
+        "selections":"34", "title":"Search All Cases"
+    },
+    "FUNC_OMNI_SEARCH": {
+        "selections":"5", "title":"All Cases"
+    }
+}
+

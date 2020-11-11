@@ -130,3 +130,8 @@ dmypy.json
 
 # vim
 *.swp
+
+csv/
+log/
+*.bak
+staging_user_credentials.json
