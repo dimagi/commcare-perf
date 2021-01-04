@@ -27,3 +27,8 @@ Basic usage, for a single test user:
 Leave off ``--headless`` to view results in the Locust web UI. See
 `docs <https://docs.locust.io/en/stable/running-locust-without-web-ui.html>`_ for options to set number of users,
 run time, etc.
+
+Usage for commcarehq.py
+^^^^^^^^^^^^^^^^^^^^^^
+
+``env project=staging locust -f commcarehq.py --headless  -u 1 -r 1 -t 10m --csv=[csv_location_and_name] --logfile=[log_location_and_name] --tags all``

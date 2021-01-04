@@ -18,15 +18,30 @@ class WorkloadModelSteps(TaskSet):
             self.FUNC_USER_CHECK_IN_FORM=data['FUNC_USER_CHECK_IN_FORM']
             self.FUNC_USER_CHECK_IN=data['FUNC_USER_CHECK_IN']
             self.FUNC_HOME_SCREEN=data['FUNC_HOME_SCREEN']
-            self.FUNC_CASE_LIST=data['FUNC_CASE_LIST']
+            self.FUNC_ALL_CASES_CASE_LIST=data['FUNC_ALL_CASES_CASE_LIST']
+            self.FUNC_ALL_OPEN_CASES_CASE_LIST=data['FUNC_ALL_OPEN_CASES_CASE_LIST']
+            self.FUNC_ALL_CLOSED_CASES_CASE_LIST=data['FUNC_ALL_CLOSED_CASES_CASE_LIST']
             self.FUNC_CASE_DETAILS=data['FUNC_CASE_DETAILS']
-            self.FUNC_FORM_ENTRY=data['FUNC_FORM_ENTRY']
+            self.FUNC_CI_FORM=data['FUNC_CI_FORM']
+            self.FUNC_PART_OF_CLUSTER=data['FUNC_PART_OF_CLUSTER']
+            self.FUNC_HOSPITALIZED=data['FUNC_HOSPITALIZED']
+            self.FUNC_HOSPITAL_NAME=data['FUNC_HOSPITAL_NAME']
+            self.FUNC_CI_FORM_SUBMIT=data['FUNC_CI_FORM_SUBMIT']
+            self.FUNC_ID_FORM=data['FUNC_ID_FORM']
+            self.FUNC_ALTERNATE_PHONE_NUMBER=data['FUNC_ALTERNATE_PHONE_NUMBER']
+            self.FUNC_ALTERNATE_PHONE_NUMBER_ENTER=data['FUNC_ALTERNATE_PHONE_NUMBER_ENTER']
+            self.FUNC_ID_FORM_SUBMIT=data['FUNC_ID_FORM_SUBMIT']
             self.FUNC_CASE_CLAIM_SEARCH=data['FUNC_CASE_CLAIM_SEARCH']
             self.FUNC_OMNI_SEARCH=data['FUNC_OMNI_SEARCH']
+            self.FUNC_NEW_SEARCH_ALL_CASES_FORM=data['FUNC_NEW_SEARCH_ALL_CASES_FORM']
+            self.FUNC_NEW_SEARCH_ALL_CASES=data['FUNC_NEW_SEARCH_ALL_CASES']
+            self.FUNC_NEW_SEARCH_ALL_CONTACTS_FORM=data['FUNC_NEW_SEARCH_ALL_CONTACTS_FORM']
+            self.FUNC_NEW_SEARCH_ALL_CONTACTS=data['FUNC_NEW_SEARCH_ALL_CONTACTS']
         self._log_in()
         self._get_build_info()
-        self._get_caselist_filter()
-        self._get_caselist_ids()
+        self._get_all_cases_info()
+        self._get_all_cases_filter()
+        self._get_all_cases_ids()
         self._user_check_in_form()
         if self.session_id:      # if session_id isn't empty, do user check in
             self._user_check_in()
@@ -53,29 +68,34 @@ class WorkloadModelSteps(TaskSet):
 
 
     def _get_build_info(self):
-        logging.info("_get_build_id")
-        response = self.client.get(f'/a/{self.user.domain}/cloudcare/apps/v2/?option=apps', name='Web Apps apps')
+        logging.info("_get_build_info")
+        response = self.client.get(f'/a/{self.user.domain}/cloudcare/apps/v2/?option=apps', name='build info')
         assert(response.status_code == 200)
         for app in response.json():
             if app['copy_of']==self.user.app_id:
                 # get build_id
                 self.build_id = app['_id']
-                # get All_Cases module info
-                for module in app['modules']:
-                    if module['name']['en']=="All Cases":
-                        self.all_cases_module=module
-                        #print("module--->"+str(module))
-        #build_id_map = {
-        #    app['copy_of']: app['_id']
-        #    for app in response.json()
-        #}
-        #assert(self.user.app_id in build_id_map)
-        #self.build_id = build_id_map[self.user.app_id]
+        logging.info("build_id: "+self.build_id)
 
 
-    def _get_caselist_filter(self):
-        logging.info("_get_filter")
-        #print("==>>"+str(self.all_cases_module['case_details']['short']['filter']))
+    def _get_all_cases_info(self):
+        logging.info("_get_all_cases_info")
+        ##ex: https://staging.commcarehq.org/a/us-covid-performance/apps/source/765b9d4c97d149b3859f86c229872f97/
+        response = self.client.get(f'/a/{self.user.domain}/apps/source/{self.user.app_id}/', name='all cases info')
+        assert(response.status_code == 200)
+        data=response.json()
+        modules=data['modules']
+        for module in modules:
+            #logging.info("module--->"+str(module))
+            # get All_Cases module info
+            if module['name']['en']=="All Cases":
+                #logging.info("all_cases--->"+str(module))
+                self.all_cases_module=module
+
+
+    def _get_all_cases_filter(self):
+        logging.info("_get_all_cases_filter")
+        logging.info("all cases filter: "+str(self.all_cases_module['case_details']['short']['filter']))
         local_filter=str(self.all_cases_module['case_details']['short']['filter'])
         local_filter=local_filter.replace(" ", "%20")
         local_filter=local_filter.replace("!", "%21")
@@ -87,11 +107,11 @@ class WorkloadModelSteps(TaskSet):
         #print("here::::=="+self.all_cases_filter)
 
 
-    def _get_caselist_ids(self):
-        logging.info("_get_caselist_ids")
+    def _get_all_cases_ids(self):
+        logging.info("_get_all_cases_ids")
         url = f'/a/{self.user.domain}/phone/search/?case_type={self.user.case_type}&owner_id={self.user.owner_id}&_xpath_query={self.all_cases_filter}'
         #print("url-->"+url)
-        response = self.client.get(url, name='Get Caselist Ids')
+        response = self.client.get(url, name='get all cases ids')
         assert(response.status_code == 200)
 
         case_ids=[]
@@ -151,55 +171,210 @@ class WorkloadModelSteps(TaskSet):
         assert(data['submitResponseMessage'] == self.FUNC_USER_CHECK_IN['submitResponseMessage'])
 
 
-    @tag('all')
+    @tag('all', 'home_screen')
     @task
     def home_screen(self):
         logging.info("home_screen")
-        data = self._formplayer_post("navigate_menu_start", name="Start", checkKey="title", checkValue=self.FUNC_HOME_SCREEN['title'])
+        data = self._formplayer_post("navigate_menu_start", name="Home Screen", checkKey="title", checkValue=self.FUNC_HOME_SCREEN['title'])
         assert(data['title'] == self.FUNC_HOME_SCREEN['title'])
         #assert(len(data['commands']) == 41)
 
 
-    @tag('all')
+    @tag('all', 'all_cases_case_list')
     @task
-    def case_list(self):
-        # All Cases is the sixth command in the main menu
-        logging.info("case_list")
+    def all_cases_case_list(self):
+        logging.info("all_cases_case_list")
         data = self._formplayer_post("navigate_menu",extra_json={
-           "selections" : [self.FUNC_CASE_LIST['selections']],
-        }, name="All Cases case list", checkKey="title", checkValue=self.FUNC_CASE_LIST['title'])
+           "selections" : [self.FUNC_ALL_CASES_CASE_LIST['selections']],
+        }, name="All Cases Case List", checkKey="title", checkValue=self.FUNC_ALL_CASES_CASE_LIST['title'])
         #data = self._navigate_menu([5], name="All Cases case list")
-        assert(data['title'] == self.FUNC_CASE_LIST['title'])
+        assert(data['title'] == self.FUNC_ALL_CASES_CASE_LIST['title'])
         assert(len(data['entities']))       # should return at least one case
 
 
-    @tag('all', 'form-entry', 'test')
+    @tag('all', 'all_open_cases_case_list', 'cal_test')
     @task
-    class FormEntry(SequentialTaskSet):
+    def all_open_cases_case_list(self):
+        logging.info("all_open_cases_case_list")
+        data = self._formplayer_post("navigate_menu",extra_json={
+           "selections" : [self.FUNC_ALL_OPEN_CASES_CASE_LIST['selections']],
+        }, name="All Open Cases Case List", checkKey="title", checkValue=self.FUNC_ALL_OPEN_CASES_CASE_LIST['title'])
+        assert(data['title'] == self.FUNC_ALL_OPEN_CASES_CASE_LIST['title'])
+        assert(len(data['entities']))       # should return at least one case
+
+
+    @tag('all', 'all_closed_cases_case_list', 'cal_test')
+    @task
+    def all_closed_cases_case_list(self):
+        logging.info("all_closed_cases_case_list")
+        data = self._formplayer_post("navigate_menu",extra_json={
+           "selections" : [self.FUNC_ALL_CLOSED_CASES_CASE_LIST['selections']],
+        }, name="All Closed Cases Case List", checkKey="title", checkValue=self.FUNC_ALL_CLOSED_CASES_CASE_LIST['title'])
+        assert(data['title'] == self.FUNC_ALL_CLOSED_CASES_CASE_LIST['title'])
+        assert(len(data['entities']))       # should return at least one case
+
+
+    @tag('all', 'ci-form', 'cal_test')
+    @task
+    # Case Investigatoin Form
+    class CIFormEntry(SequentialTaskSet):
         @task
         def case_details(self):
-            # Select All Cases, then a case
+            # select All Cases, then a case
             self.local_case_id=self.parent._get_case_id_patient()
-            logging.info("case_details::case_id::"+self.local_case_id)
+            logging.info("ci-form==case_details::case_id::"+self.local_case_id)
             data = self.parent._formplayer_post("get_details", extra_json={
                 "selections": [self.parent.FUNC_CASE_DETAILS['selections'], self.local_case_id],
-            }, name="Case Detail", checkKey=self.parent.FUNC_CASE_DETAILS['checkKey'], checkLen=self.parent.FUNC_CASE_DETAILS['checkLen'])
+            }, name="Case Detail for CI Form", checkKey=self.parent.FUNC_CASE_DETAILS['checkKey'], checkLen=self.parent.FUNC_CASE_DETAILS['checkLen'])
             assert(len(data['details']) == self.parent.FUNC_CASE_DETAILS['checkLen'])
 
 
         @task
-        def form_entry(self):
-            # Select All Cases, then a case, then second command is CI form
-            logging.info("form_entry::case_id::"+self.local_case_id)
+        def ci_form(self):
+            # Select All Cases, then a case, then Case Investiation form
+            logging.info("ci-form==ci_form::case_id::"+self.local_case_id)
             data = self.parent._formplayer_post("navigate_menu", extra_json={
-                "selections": [self.parent.FUNC_FORM_ENTRY['selections'], self.local_case_id, 2],
-            }, name="CI Form", checkKey="title", checkValue=self.parent.FUNC_FORM_ENTRY['title'])
-            #data = self._navigate_menu([5, local_case_id, 2], name="CI Form")
-            assert(data['title'] == self.parent.FUNC_FORM_ENTRY['title'])
+                "selections": [self.parent.FUNC_CI_FORM['selections'], self.local_case_id, self.parent.FUNC_CI_FORM['subselections']],
+            }, name="CI Form", checkKey="title", checkValue=self.parent.FUNC_CI_FORM['title'])
+            self.session_id=data['session_id']
+            logging.info("ci_form==ci_form::sessionId::"+self.session_id)
+            assert(data['title'] == self.parent.FUNC_CI_FORM['title'])
             assert('instanceXml' in data)
 
 
-    @tag('all', 'search')
+        @task
+        def part_of_cluster(self):
+            # Is this case part of a cluster? --> select No
+            logging.info("ci-form==part_of_cluster::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_PART_OF_CLUSTER['answer'], 
+                "ix": self.parent.FUNC_PART_OF_CLUSTER['ix'], 
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Part of Cluster for CI Form", checkKey="title", checkValue=self.parent.FUNC_PART_OF_CLUSTER['title'])
+            assert(data['title'] == self.parent.FUNC_PART_OF_CLUSTER['title'])
+
+
+        @task
+        def hospitalized(self):
+            # Hospitalized --> select Yes
+            logging.info("ci-form==hospitalized::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_HOSPITALIZED['answer'],
+                "ix": self.parent.FUNC_PART_OF_CLUSTER['ix'], 
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Hospitalizedfor CI Form", checkKey="title", checkValue=self.parent.FUNC_HOSPITALIZED['title'])
+            assert(data['title'] == self.parent.FUNC_HOSPITALIZED['title'])
+
+
+        @task
+        def hospital_name(self):
+            ## hospitalized --> yes --> hospital name free text response
+            logging.info("ci-form==hospital_name::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_HOSPITAL_NAME['answer'],
+                "ix": self.parent.FUNC_PART_OF_CLUSTER['ix'], 
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Hospital Name for CI Form", checkKey="title", checkValue=self.parent.FUNC_HOSPITAL_NAME['title'])
+            assert(data['title'] == self.parent.FUNC_HOSPITAL_NAME['title'])
+
+
+        @task
+        def ci_form_submit(self):
+            logging.info("ci-form==ci_form_submit::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": {
+                    self.parent.FUNC_CI_FORM_SUBMIT['answers-key1']: [self.parent.FUNC_CI_FORM_SUBMIT['answers-value1']],
+                    self.parent.FUNC_CI_FORM_SUBMIT['answers-key2']: self.parent.FUNC_CI_FORM_SUBMIT['answers-value2'],
+                    self.parent.FUNC_CI_FORM_SUBMIT['answers-key3']: [self.parent.FUNC_CI_FORM_SUBMIT['answers-value3']],
+                    self.parent.FUNC_CI_FORM_SUBMIT['answers-key4']: self.parent.FUNC_CI_FORM_SUBMIT['answers-value4']
+                },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="CI Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_CI_FORM_SUBMIT['submitResponseMessage'])
+            assert(data['submitResponseMessage'] == self.parent.FUNC_CI_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def stop(self):
+            self.interrupt()
+
+
+    @tag('all', 'id-form', 'cal_test')
+    @task
+    # Identify Duplicate Patient
+    class IDPatientEntry(SequentialTaskSet):
+        @task
+        def case_details(self):
+            # select All Cases, then a case
+            self.local_case_id=self.parent._get_case_id_patient()
+            logging.info("id-form==case_details::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("get_details", extra_json={
+                "selections": [self.parent.FUNC_CASE_DETAILS['selections'], self.local_case_id],
+            }, name="Case Detail for ID Form", checkKey=self.parent.FUNC_CASE_DETAILS['checkKey'], checkLen=self.parent.FUNC_CASE_DETAILS['checkLen'])
+            assert(len(data['details']) == self.parent.FUNC_CASE_DETAILS['checkLen'])
+
+
+        @task
+        def id_form(self):
+            # Select All Cases, then a case, then Identify Duplicate Patient form
+            logging.info("id-form==id_form::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections": [self.parent.FUNC_ID_FORM['selections'], self.local_case_id, self.parent.FUNC_ID_FORM['subselections']],
+            }, name="ID Form", checkKey="title", checkValue=self.parent.FUNC_ID_FORM['title'])
+            self.session_id=data['session_id']
+            logging.info("id_form==id_form::sessionId::"+self.session_id)
+            assert(data['title'] == self.parent.FUNC_ID_FORM['title'])
+            assert('instanceXml' in data)
+
+
+        @task
+        def alternate_phone_number(self):
+            logging.info("id-form==alternate_phone_number::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_ALTERNATE_PHONE_NUMBER['answer'], 
+                "ix": self.parent.FUNC_ALTERNATE_PHONE_NUMBER['ix'], 
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Alternate Phone Number for ID Form", checkKey="title", checkValue=self.parent.FUNC_ALTERNATE_PHONE_NUMBER['title'])
+            assert(data['title'] == self.parent.FUNC_ALTERNATE_PHONE_NUMBER['title'])
+
+
+        @task
+        def alternate_phone_number_enter(self):
+            logging.info("id-form==alternate_phone_number_enter::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_ALTERNATE_PHONE_NUMBER_ENTER['answer'],
+                "ix": self.parent.FUNC_ALTERNATE_PHONE_NUMBER_ENTER['ix'], 
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Alternate Phone Number Enter for ID Form", checkKey="title", checkValue=self.parent.FUNC_ALTERNATE_PHONE_NUMBER_ENTER['title'])
+            assert(data['title'] == self.parent.FUNC_ALTERNATE_PHONE_NUMBER_ENTER['title'])
+
+
+        @task
+        def id_form_submit(self):
+            logging.info("id-form==id_form_submit::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": {
+                    self.parent.FUNC_ID_FORM_SUBMIT['answers-key']: [self.parent.FUNC_ID_FORM_SUBMIT['answers-value']]
+                },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="ID Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_ID_FORM_SUBMIT['submitResponseMessage'])
+            assert(data['submitResponseMessage'] == self.parent.FUNC_ID_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def stop(self):
+            self.interrupt()
+
+
+    @tag('all', 'case_claim_search', 'search')
     @task
     def case_claim_search(self):
         # TEsting Module 3 - exclude active :: Search All Cases
@@ -216,7 +391,7 @@ class WorkloadModelSteps(TaskSet):
         assert(data["title"] == self.FUNC_CASE_CLAIM_SEARCH['title'])
 
 
-    @tag('all', 'search')
+    @tag('all', 'omni_search', 'search')
     @task
     def omni_search(self):
         # All Case :: Omni Search
@@ -231,6 +406,70 @@ class WorkloadModelSteps(TaskSet):
             "search_text" : search_value},
             name="OMNI Search", checkKey="title", checkValue=self.FUNC_OMNI_SEARCH['title'])
         assert(data["title"] == self.FUNC_OMNI_SEARCH['title'])
+
+
+    @tag('all', 'new-case-search', 'test')
+    @task
+    class NewCaseSearch(SequentialTaskSet):
+        @task
+        def new_search_all_cases_form(self):
+            logging.info("new-case-search==new_search_all_cases_form")
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections" : [self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['selections']],
+                },
+                name="Search All Cases Form", checkKey="title", checkValue=self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['title'])
+            assert(data["title"] == self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['title'])
+
+
+        @task
+        def new_search_all_cases(self):
+            logging.info("new-case-search==new_search_all_cases")
+            search_value = random.choice(self.parent.SEARCH_NAMES)
+            logging.info("new-case-searach==new_search_all_cases::search_term::"+search_value)
+
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections" : [self.parent.FUNC_NEW_SEARCH_ALL_CASES['selections']],
+                "query_dictionary" : {"first_name" : search_value}},
+                name="Search All Cases", checkKey="title", checkValue=self.parent.FUNC_NEW_SEARCH_ALL_CASES['title'])
+            assert(data["title"] == self.parent.FUNC_NEW_SEARCH_ALL_CASES['title'])
+
+
+        @task
+        def stop(self):
+            logging.info("new-case-search==stop")
+            self.interrupt()
+
+
+    @tag('all', 'new-contact-search', 'test')
+    @task
+    class NewContactSearch(SequentialTaskSet):
+        @task
+        def new_search_all_contacts_form(self):
+            logging.info("new-contact-search==new_search_all_contacts_form")
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections" : [self.parent.FUNC_NEW_SEARCH_ALL_CONTACTS_FORM['selections']],
+                },
+                name="Search All Contacts Form", checkKey="title", checkValue=self.parent.FUNC_NEW_SEARCH_ALL_CONTACTS_FORM['title'])
+            assert(data["title"] == self.parent.FUNC_NEW_SEARCH_ALL_CONTACTS_FORM['title'])
+    
+
+        @task
+        def new_search_all_contacts(self):
+            logging.info("new-contact-search==new_search_all_contacts")
+            search_value = random.choice(self.parent.SEARCH_NAMES)
+            logging.info("new-contact-search==new_search_all_contacts::search_term::"+search_value)
+
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections" : [self.parent.FUNC_NEW_SEARCH_ALL_CONTACTS['selections']],
+                "query_dictionary" : {"first_name" : search_value}},
+                name="Search All Contacts", checkKey="title", checkValue=self.parent.FUNC_NEW_SEARCH_ALL_CONTACTS['title'])
+            assert(data["title"] == self.parent.FUNC_NEW_SEARCH_ALL_CONTACTS['title'])
+
+
+        @task
+        def stop(self):
+            logging.info("new-contact-search==stop")
+            self.interrupt()
 
 
     def _formplayer_post(self, command, extra_json=None, name=None, checkKey=None, checkValue=None, checkLen=None, checkList=None):
@@ -271,8 +510,9 @@ class LoginCommCareHQWithUniqueUsers(HttpUser):
     tasks= [WorkloadModelSteps]
     wait_time = between(15, 30)
     formplayer_host = "/formplayer" 
+    project=str(os.environ.get("project"))
 
-    with open("config.yaml") as f:
+    with open(project+"/config.yaml") as f:
         config = yaml.safe_load(f)
         host = config['host']
         domain = config['domain']

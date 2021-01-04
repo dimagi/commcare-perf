@@ -1,0 +1,80 @@
+{
+    "SEARCH_NAMES": [
+        "Aki", "Graham", "Samic", "Jet", "Petty", "Knack", "Elle", "Leer", "Mike", "John",
+        "Rick", "Manny", "Bud", "Reggie", "Trate", "Deb", "Holly", "Utant", "Yu", "Penny",
+        "Mick", "Paul", "Clark", "Rib", "Tube", "Sir", "Kim", "Ville", "Louis", "Mello",
+        "Marsha", "Moe", "Thegrass", "Smith", "Cooke", "Edoh", "Gail", "Sharon", "Faye", "Anna",
+        "Jim", "Mal", "Aaron", "Practice", "Mull", "Zack", "Lou", "Zing", "Tara", "Zona",
+        "Carrie", "Abel", "Body", "Jimmy", "Frank", "Manuel", "Labor", "Phil", "Erup", "Doug",
+        "Mel", "Chip", "Paige", "Turner", "Sue", "Dante", "Gene", "Jacket", "Sven", "Ed",
+        "Matt", "Bill", "Emia", "Zupp", "Greta", "Life", "Barney", "Cull", "Eda", "Barry",
+        "Monty", "Minnie", "Mack", "Strone", "Owen", "Lewis", "Kat", "Sal", "Joyce", "Tick",
+        "Ty", "Ira", "Shee", "Marcus", "Sil", "Antro", "Mark", "Ette", "Poppa", "Tom"
+    ],
+    "FUNC_USER_CHECK_IN_FORM": {
+        "selections":"0", "title1":"Check In","title2":"Proceed to Check Out"
+    },
+    "FUNC_USER_CHECK_IN": {
+        "answers-key":"4", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_HOME_SCREEN": {
+        "title":"sluTest - NY Communicable Disease Case Management System (NY-CDCMS)"
+    },
+    "FUNC_ALL_CASES_CASE_LIST": {
+        "selections":"5", "title":"All Cases"
+    },
+    "FUNC_ALL_OPEN_CASES_CASE_LIST": {
+        "selections":"3", "title":"All Open Cases"
+    },
+    "FUNC_ALL_CLOSED_CASES_CASE_LIST": {
+        "selections":"4", "title":"All Closed Cases"
+    },
+    "FUNC_CASE_DETAILS": {
+        "selections":"5", "checkKey":"details", "checkLen":5
+    },
+    "FUNC_CI_FORM": {
+        "selections":"5", "subselections":"2", "title":"Case Investigation"
+    },
+    "FUNC_PART_OF_CLUSTER": {
+        "answer":"2", "ix":"15,0", "title":"Case Investigation"
+    },
+    "FUNC_HOSPITALIZED": {
+        "answer":"1", "ix":"17,5", "title":"Case Investigation"
+    },
+    "FUNC_HOSPITAL_NAME": {
+        "answer":"something", "ix":"17,6", "title":"Case Investigation"
+    },
+    "FUNC_CI_FORM_SUBMIT": {
+        "answers-key1":"11,2", "answers-value1":"2", "answers-key2":"15,0", "answers-value2":"2", "answers-key3":"17,5", "answers-value3":"1", "answers-key4":"17,6", "answers-value4":"something", "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_ID_FORM": {
+        "selections":"5", "subselections":"0", "title":"Identify Duplicate Patient"
+    }, 
+    "FUNC_ALTERNATE_PHONE_NUMBER": {
+        "answer":"2", "ix":"4", "title":"Identify Duplicate Patient"
+    }, 
+    "FUNC_ALTERNATE_PHONE_NUMBER_ENTER": {
+        "answer":"1111111111", "ix":"6,0", "title":"Identify Duplicate Patient"
+    }, 
+    "FUNC_ID_FORM_SUBMIT": {
+        "answers-key":"9", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_CASE_CLAIM_SEARCH": {
+        "selections":"34", "title":"Search All Cases"
+    },
+    "FUNC_OMNI_SEARCH": {
+        "selections":"5", "title":"All Cases"
+    },
+    "FUNC_NEW_SEARCH_ALL_CASES_FORM": {
+        "selections":"37", "title":"Testing Module - Search All Cases"
+    },
+    "FUNC_NEW_SEARCH_ALL_CASES": {
+        "selections":"37", "title":"Testing Module - Search All Cases" 
+    },
+    "FUNC_NEW_SEARCH_ALL_CONTACTS_FORM": {
+        "selections":"38", "title":"Testing Module - Search All Contacts" 
+    },
+    "FUNC_NEW_SEARCH_ALL_CONTACTS": {
+        "selections":"38", "title":"Testing Module - Search All Contacts"
+    }
+}
