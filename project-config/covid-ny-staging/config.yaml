@@ -1,0 +1,8 @@
+host: https://staging.commcarehq.org
+domain: covid-ny-staging
+## NY App - slu test
+app_id: 726c133bc0854b22a370b4f2624aca09 
+domain_user_credential: project-config/covid-ny-staging/user_credentials.json
+owner_id: 6170f82f99fd4ea2a84d383efaa8fbbd
+case_type: patient
+app_config: project-config/covid-ny-staging/app_config.json

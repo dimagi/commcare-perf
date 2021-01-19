@@ -1,0 +1,8 @@
+host: https://staging.commcarehq.org
+domain: us-covid-performance
+## Bulk Actions
+app_id: b0f2aa0cd63f1d00dc0784f9857a8fb5 
+domain_user_credential: project-config/us-covid-performance-bulk/user_credentials.json
+owner_id: 39dfd889c53a4ed7894e68600fd1aee7
+case_type: patient
+app_config: project-config/us-covid-performance-bulk/app_config.json

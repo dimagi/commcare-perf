@@ -1,0 +1,8 @@
+host: https://staging.commcarehq.org
+domain: us-covid-performance
+## sluTest - NY Communicable Disease Case Management System (NY-CDCMS)
+app_id: 765b9d4c97d149b3859f86c229872f97 
+domain_user_credential: project-config/us-covid-performance/user_credentials.json
+owner_id: 39dfd889c53a4ed7894e68600fd1aee7
+case_type: patient
+app_config: project-config/us-covid-performance/app_config.json
