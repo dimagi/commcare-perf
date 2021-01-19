@@ -31,4 +31,11 @@ run time, etc.
 Usage for commcarehq.py
 ^^^^^^^^^^^^^^^^^^^^^^
 
-``env project=staging locust -f commcarehq.py --headless  -u 1 -r 1 -t 10m --csv=[csv_location_and_name] --logfile=[log_location_and_name] --tags all``
+``env project=us-covid-performance locust -f commcarehq.py --headless  -u 1 -r 1 -t 10m --csv=[csv_location_and_name] --logfile=[log_location_and_name] --tags all``
+
+tags for projects
+covid-ny-staging — tags: home_screen all_cases_case_list all_open_cases_case_list all_closed_cases_case_list ci-form id-form register-new-contact-form
+
+us-covid-performance — tags: home_screen all_cases_case_list all_open_cases_case_list all_closed_cases_case_list new-case-search new-contact-search 
+
+us-covid-performance-bulk — tags: bulk-update-form
