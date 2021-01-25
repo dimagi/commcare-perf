@@ -134,5 +134,4 @@ dmypy.json
 csv/
 log/
 *.bak
-user_credentials.json
 test-10-contacts/
