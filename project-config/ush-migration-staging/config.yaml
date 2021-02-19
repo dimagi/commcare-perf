@@ -1,0 +1,8 @@
+host: https://staging.commcarehq.org
+domain: ush-migration-staging
+## USH Migratio Copy
+app_id: d487744456e4471ab1fae83bb399c8f3
+domain_user_credential: project-config/ush-migration-staging/user_credentials.json
+owner_id: 3315b6a75ea04ce09347cf70a2a7c934
+case_type: patient
+app_config: project-config/ush-migration-staging/app_config.json

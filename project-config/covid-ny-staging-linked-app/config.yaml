@@ -1,0 +1,8 @@
+host: https://staging.commcarehq.org
+domain: covid-ny-staging
+## NY Linked App 
+app_id: b680d16ac93d7410e941b1ba7e6711d4 
+domain_user_credential: project-config/covid-ny-staging-linked-app/user_credentials.json
+owner_id: 6170f82f99fd4ea2a84d383efaa8fbbd
+case_type: patient
+app_config: project-config/covid-ny-staging-linked-app/app_config.json
