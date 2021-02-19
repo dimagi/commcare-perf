@@ -15,25 +15,46 @@ class WorkloadModelSteps(TaskSet):
         with open(self.user.app_config) as json_file:
             data = json.load(json_file)
             self.MOD_SKIP=data['MOD_SKIP']
-            self.ALL_CASES=data['ALL_CASES']
+            self.CASES_LIST_FILTER=data['CASES_LIST_FILTER']
             self.SEARCH_NAMES=data['SEARCH_NAMES']
+            self.FUNC_USER_CHECK_OUT_FORM=data['FUNC_USER_CHECK_OUT_FORM']
             self.FUNC_USER_CHECK_IN_FORM=data['FUNC_USER_CHECK_IN_FORM']
             self.FUNC_USER_CHECK_IN=data['FUNC_USER_CHECK_IN']
             self.FUNC_HOME_SCREEN=data['FUNC_HOME_SCREEN']
             self.FUNC_ALL_CASES_CASE_LIST=data['FUNC_ALL_CASES_CASE_LIST']
             self.FUNC_ALL_OPEN_CASES_CASE_LIST=data['FUNC_ALL_OPEN_CASES_CASE_LIST']
             self.FUNC_ALL_CLOSED_CASES_CASE_LIST=data['FUNC_ALL_CLOSED_CASES_CASE_LIST']
+            if 'FUNC_ALL_CONTACTS_CASE_LIST' in data:
+                self.FUNC_ALL_CONTACTS_CASE_LIST=data['FUNC_ALL_CONTACTS_CASE_LIST']
+            if 'FUNC_ALL_OPEN_CONTACTS_CASE_LIST' in data: 
+                self.FUNC_ALL_OPEN_CONTACTS_CASE_LIST=data['FUNC_ALL_OPEN_CONTACTS_CASE_LIST']
+            if 'FUNC_ALL_CLOSED_CONTACTS_CASE_LIST' in data: 
+                self.FUNC_ALL_CLOSED_CONTACTS_CASE_LIST=data['FUNC_ALL_CLOSED_CONTACTS_CASE_LIST']
             self.FUNC_CASE_DETAILS=data['FUNC_CASE_DETAILS']
             self.FUNC_CI_FORM=data['FUNC_CI_FORM']
             self.FUNC_PART_OF_CLUSTER=data['FUNC_PART_OF_CLUSTER']
             self.FUNC_HOSPITALIZED=data['FUNC_HOSPITALIZED']
             self.FUNC_HOSPITAL_NAME=data['FUNC_HOSPITAL_NAME']
             self.FUNC_CI_FORM_SUBMIT=data['FUNC_CI_FORM_SUBMIT']
+            if 'FUNC_CM_CASE_DETAILS' in data: 
+                self.FUNC_CM_CASE_DETAILS=data['FUNC_CM_CASE_DETAILS']
+            if 'FUNC_CM_FORM' in data: 
+                self.FUNC_CM_FORM=data['FUNC_CM_FORM']
+            if 'FUNC_VIEW_UPDATE_CONTACT_INFO' in data: 
+                self.FUNC_VIEW_UPDATE_CONTACT_INFO=data['FUNC_VIEW_UPDATE_CONTACT_INFO']
+            if 'FUNC_INVALID_PHONE_NUMBER' in data: 
+                self.FUNC_INVALID_PHONE_NUMBER=data['FUNC_INVALID_PHONE_NUMBER']
+            if 'FUNC_PROVIDER_NAME' in data: 
+                self.FUNC_PROVIDER_NAME=data['FUNC_PROVIDER_NAME']
+            if 'FUNC_CM_FORM_SUBMIT' in data: 
+                self.FUNC_CM_FORM_SUBMIT=data['FUNC_CM_FORM_SUBMIT']
             self.FUNC_ID_FORM=data['FUNC_ID_FORM']
             self.FUNC_ALTERNATE_PHONE_NUMBER=data['FUNC_ALTERNATE_PHONE_NUMBER']
             self.FUNC_ALTERNATE_PHONE_NUMBER_ENTER=data['FUNC_ALTERNATE_PHONE_NUMBER_ENTER']
             self.FUNC_ID_FORM_SUBMIT=data['FUNC_ID_FORM_SUBMIT']
             self.FUNC_RNC_FORM=data['FUNC_RNC_FORM']
+            if 'FUNC_RNC_TOTAL_NUM_PEOPLE' in data:
+                self.FUNC_RNC_TOTAL_NUM_PEOPLE=data['FUNC_RNC_TOTAL_NUM_PEOPLE']
             self.FUNC_RNC_FIRST_NAME=data['FUNC_RNC_FIRST_NAME']
             self.FUNC_RNC_LAST_NAME=data['FUNC_RNC_LAST_NAME']
             self.FUNC_RNC_SCHOOL_SETTING=data['FUNC_RNC_SCHOOL_SETTING']
@@ -54,9 +75,37 @@ class WorkloadModelSteps(TaskSet):
             self.FUNC_BU_CONTACTS_MATCHING=data['FUNC_BU_CONTACTS_MATCHING']
             self.FUNC_BU_ASSIGN_PRIMARY=data['FUNC_BU_ASSIGN_PRIMARY']
             self.FUNC_BU_SELECT_OWNER=data['FUNC_BU_SELECT_OWNER']
+            if 'FUNC_BU_UPDATE_FEWER_CONTACTS' in data:
+                self.FUNC_BU_UPDATE_FEWER_CONTACTS=data['FUNC_BU_UPDATE_FEWER_CONTACTS']
             self.FUNC_BU_NUMBER_OF_UPDATES=data['FUNC_BU_NUMBER_OF_UPDATES']
             self.FUNC_BU_CONTACTS_FORM_SUBMIT=data['FUNC_BU_CONTACTS_FORM_SUBMIT']
             self.FUNC_UPDATE_CONTACTS_FORM_SUBMIT=data['FUNC_UPDATE_CONTACTS_FORM_SUBMIT']
+            if 'FUNC_BU_CASES_FORM' in data:
+                self.FUNC_BU_CASES_FORM=data['FUNC_BU_CASES_FORM']
+            if 'FUNC_BU_CASES_UNCHECK_OPEN_CASES' in data:
+                self.FUNC_BU_CASES_UNCHECK_OPEN_CASES=data['FUNC_BU_CASES_UNCHECK_OPEN_CASES']
+            if 'FUNC_BU_CASES_UNCHECK_VALID_PHONE' in data:
+                self.FUNC_BU_CASES_UNCHECK_VALID_PHONE=data['FUNC_BU_CASES_UNCHECK_VALID_PHONE']
+            if 'FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES' in data:
+                self.FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES=data['FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES']
+            if 'FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW' in data:
+                self.FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW=data['FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW']
+            if 'FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER' in data:
+                self.FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER=data['FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER']
+            if 'FUNC_BU_CASES_MATCHING' in data:
+                self.FUNC_BU_CASES_MATCHING=data['FUNC_BU_CASES_MATCHING']
+            if 'FUNC_BU_CASES_ASSIGN_PRIMARY' in data:
+                self.FUNC_BU_CASES_ASSIGN_PRIMARY=data['FUNC_BU_CASES_ASSIGN_PRIMARY']
+            if 'FUNC_BU_CASES_SELECT_OWNER' in data:
+                self.FUNC_BU_CASES_SELECT_OWNER=data['FUNC_BU_CASES_SELECT_OWNER']
+            if 'FUNC_BU_CASES_UPDATE_FEWER_CASES' in data:
+                self.FUNC_BU_CASES_UPDATE_FEWER_CASES=data['FUNC_BU_CASES_UPDATE_FEWER_CASES']
+            if 'FUNC_BU_CASES_NUMBER_OF_UPDATES' in data:
+                self.FUNC_BU_CASES_NUMBER_OF_UPDATES=data['FUNC_BU_CASES_NUMBER_OF_UPDATES']
+            if 'FUNC_BU_CASES_FORM_SUBMIT' in data:
+                self.FUNC_BU_CASES_FORM_SUBMIT=data['FUNC_BU_CASES_FORM_SUBMIT']
+            if 'FUNC_UPDATE_CASES_FORM_SUBMIT' in data:
+                self.FUNC_UPDATE_CASES_FORM_SUBMIT=data['FUNC_UPDATE_CASES_FORM_SUBMIT']
         self._log_in()
         self._get_build_info()
         if not self.MOD_SKIP['get_all_cases_info']:
@@ -65,11 +114,12 @@ class WorkloadModelSteps(TaskSet):
             self._get_all_cases_filter()
         if not self.MOD_SKIP['get_all_cases_info']:
             self._get_all_cases_ids()
-        if not self.MOD_SKIP['check_in_form']:
-            self._user_check_in_form()
-        if not self.MOD_SKIP['check_in_form']:
-            if self.session_id:      # if session_id isn't empty, do user check in
-                self._user_check_in()
+        if not self.MOD_SKIP['get_all_contacts_info']:
+            self._get_all_contacts_filter()
+        if not self.MOD_SKIP['get_all_contacts_info']:
+            self._get_all_contacts_ids()
+        if not self.MOD_SKIP['check_out_form']:
+            self._user_check_out_form()
 
 
     def _log_in(self):
@@ -122,7 +172,7 @@ class WorkloadModelSteps(TaskSet):
 
     def _get_all_cases_filter(self):
         logging.info("_get_all_cases_filter")
-        local_filter=self.ALL_CASES['filter'] if self.ALL_CASES['filter']!='' else str(self.all_cases_module['case_details']['short']['filter'])
+        local_filter=self.CASES_LIST_FILTER['all_cases_filter'] if self.CASES_LIST_FILTER['all_cases_filter']!='' else str(self.all_cases_module['case_details']['short']['filter'])
         logging.info("all cases filter: "+local_filter)
         #local_filter=str(self.all_cases_module['case_details']['short']['filter'])
         local_filter=local_filter.replace(" ", "%20")
@@ -149,7 +199,7 @@ class WorkloadModelSteps(TaskSet):
         case_ids=[]
         root = etree.fromstring(response.text)
         for case in root.findall('case'):
-            #print("case==>>"+case.attrib.get('case_id'))
+            #logging.info("case==>>"+case.attrib.get('case_id'))
             case_ids.append(case.attrib.get('case_id'))
         self.case_ids_patient = iter(case_ids)
 
@@ -159,26 +209,68 @@ class WorkloadModelSteps(TaskSet):
         return next(self.case_ids_patient)
 
 
+    def _get_all_contacts_filter(self):
+        logging.info("_get_all_contacts_filter")
+        local_filter=self.CASES_LIST_FILTER['all_contacts_filter']
+        logging.info("all contacts filter: "+local_filter)
+        local_filter=local_filter.replace(" ", "%20")
+        local_filter=local_filter.replace("!", "%21")
+        local_filter=local_filter.replace("=", "%3D")
+        local_filter=local_filter.replace("'", "%22")
+        local_filter=local_filter.replace("(", "%28")
+        local_filter=local_filter.replace(")", "%29")
+        local_filter=local_filter.replace("<", "%3C")
+        local_filter=local_filter.replace(">", "%3E")
+        local_filter=local_filter.replace("\n","%20")
+        local_filter=local_filter.replace("\r","%20")
+        self.all_contacts_filter=local_filter
+
+
+    def _get_all_contacts_ids(self):
+        logging.info("_get_all_contacts_ids")
+        url = f'/a/{self.user.domain}/phone/search/?case_type=contact&owner_id={self.user.owner_id}&_xpath_query={self.all_contacts_filter}'
+        #logging.info("url-->"+url)
+        response = self.client.get(url, name='get all contacts ids')
+        assert(response.status_code == 200)
+
+        case_ids=[]
+        root = etree.fromstring(response.text)
+        for case in root.findall('case'):
+            #logging.info("case==>>"+case.attrib.get('case_id'))
+            case_ids.append(case.attrib.get('case_id'))
+        self.case_ids_contact = iter(case_ids)
+
+
+    def _get_case_id_contact(self):
+        #return random.choice(self.case_ids_contact)
+        return next(self.case_ids_contact)
+
+
+    def _user_check_out_form(self):
+        logging.info("_user_check_out_form")
+        data = self._formplayer_post("navigate_menu",extra_json={
+           "selections" : [self.FUNC_USER_CHECK_OUT_FORM['selections']],
+        }, name="User CheckOut Form")
+        ###logging.info("data--->>>>>"+str(data))
+        if data['title']!=self.FUNC_USER_CHECK_OUT_FORM['title']:
+            self._user_check_in_form()
+
+
     def _user_check_in_form(self):
         logging.info("_user_check_in_form")
         data = self._formplayer_post("navigate_menu",extra_json={
            "selections" : [self.FUNC_USER_CHECK_IN_FORM['selections']],
         }, name="User CheckIn Form")
+        self.session_id=data['session_id']
+        self._user_check_in()
+        """
         try:
             self.session_id=data['session_id']
             logging.info("_user_check_in_form::sessionId::"+self.session_id)
         except (IndexError, KeyError, TypeError):
             self.session_id=''
             logging.info("_user_check_in_form::sessionId empty - skip check in")
-        if self.session_id:
-            assert(data['title'] == self.FUNC_USER_CHECK_IN_FORM['title1'])
-        else:
-            assert(data['title'] == self.FUNC_USER_CHECK_IN_FORM['title2'])
-        """
-        if self.session_id:
-            assert(data['title'] == 'Check In')
-        else :
-            assert(data['title'] == 'Proceed to Check Out')
+        assert(data['title'] == self.FUNC_USER_CHECK_IN_FORM['title'])
         """
 
 
@@ -220,6 +312,7 @@ class WorkloadModelSteps(TaskSet):
            "selections" : [self.FUNC_ALL_CASES_CASE_LIST['selections']],
         }, name="All Cases Case List", checkKey="title", checkValue=self.FUNC_ALL_CASES_CASE_LIST['title'])
         #data = self._navigate_menu([5], name="All Cases case list")
+        ##logging.info("===>>>>>>>>>"+str(data))
         assert(data['title'] == self.FUNC_ALL_CASES_CASE_LIST['title'])
         assert(len(data['entities']))       # should return at least one case
 
@@ -246,6 +339,39 @@ class WorkloadModelSteps(TaskSet):
         assert(len(data['entities']))       # should return at least one case
 
 
+    @tag('all', 'all_contacts_case_list')
+    @task
+    def all_contacts_case_list(self):
+        logging.info("all_contacts_case_list")
+        data = self._formplayer_post("navigate_menu",extra_json={
+           "selections" : [self.FUNC_ALL_CONTACTS_CASE_LIST['selections']],
+        }, name="All Contacts Case List", checkKey="title", checkValue=self.FUNC_ALL_CONTACTS_CASE_LIST['title'])
+        assert(data['title'] == self.FUNC_ALL_CONTACTS_CASE_LIST['title'])
+        assert(len(data['entities']))       # should return at least one case
+
+
+    @tag('all', 'all_open_contacts_case_list')
+    @task
+    def all_open_contacts_case_list(self):
+        logging.info("all_open_contacts_case_list")
+        data = self._formplayer_post("navigate_menu",extra_json={
+           "selections" : [self.FUNC_ALL_OPEN_CONTACTS_CASE_LIST['selections']],
+        }, name="All Open Contacts Case List", checkKey="title", checkValue=self.FUNC_ALL_OPEN_CONTACTS_CASE_LIST['title'])
+        assert(data['title'] == self.FUNC_ALL_OPEN_CONTACTS_CASE_LIST['title'])
+        assert(len(data['entities']))       # should return at least one case
+
+
+    @tag('all', 'all_closed_contacts_case_list')
+    @task
+    def all_closed_contacts_case_list(self):
+        logging.info("all_closed_contacts_case_list")
+        data = self._formplayer_post("navigate_menu",extra_json={
+           "selections" : [self.FUNC_ALL_CLOSED_CONTACTS_CASE_LIST['selections']],
+        }, name="All Closed Contacts Case List", checkKey="title", checkValue=self.FUNC_ALL_CLOSED_CONTACTS_CASE_LIST['title'])
+        assert(data['title'] == self.FUNC_ALL_CLOSED_CONTACTS_CASE_LIST['title'])
+        assert(len(data['entities']))       # should return at least one case
+
+
     @tag('all', 'ci-form', 'cal_test')
     @task
     # Case Investigatoin Form
@@ -258,6 +384,7 @@ class WorkloadModelSteps(TaskSet):
             data = self.parent._formplayer_post("get_details", extra_json={
                 "selections": [self.parent.FUNC_CASE_DETAILS['selections'], self.local_case_id],
             }, name="Case Detail for CI Form", checkKey=self.parent.FUNC_CASE_DETAILS['checkKey'], checkLen=self.parent.FUNC_CASE_DETAILS['checkLen'])
+            ###logging.info("data-details==="+str(data))
             assert(len(data['details']) == self.parent.FUNC_CASE_DETAILS['checkLen'])
 
 
@@ -328,6 +455,95 @@ class WorkloadModelSteps(TaskSet):
                 "session_id":self.session_id,
             }, name="CI Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_CI_FORM_SUBMIT['submitResponseMessage'])
             assert(data['submitResponseMessage'] == self.parent.FUNC_CI_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def stop(self):
+            self.interrupt()
+
+
+    @tag('all', 'cm-form')
+    @task
+    # Contact Monitoring Form
+    class CMFormEntry(SequentialTaskSet):
+        @task
+        def case_details(self):
+            # select All Contacts, then a contact
+            self.local_contact_id=self.parent._get_case_id_contact()
+            logging.info("cm-form==case_details::contact_id::"+self.local_contact_id)
+            data = self.parent._formplayer_post("get_details", extra_json={
+                "selections": [self.parent.FUNC_CM_CASE_DETAILS['selections'], self.local_contact_id],
+            }, name="Case Detail for CM Form", checkKey=self.parent.FUNC_CM_CASE_DETAILS['checkKey'], checkLen=self.parent.FUNC_CM_CASE_DETAILS['checkLen'])
+            ###logging.info("data-details==="+str(data))
+            assert(len(data['details']) == self.parent.FUNC_CM_CASE_DETAILS['checkLen'])
+
+
+        @task
+        def cm_form(self):
+            # Select All Contacts, then a contact, then Case Monitoring form
+            logging.info("cm-form==cm_form::contact_id::"+self.local_contact_id)
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections": [self.parent.FUNC_CM_FORM['selections'], self.local_contact_id, self.parent.FUNC_CM_FORM['subselections']],
+            }, name="CM Form", checkKey="title", checkValue=self.parent.FUNC_CM_FORM['title'])
+            logging.info("dara--->>"+str(data))
+            if not ("session_id" in data):
+                logging.info("case not found -- no session_id")
+                self.interrupt()
+            self.session_id=data['session_id']
+            logging.info("cm_form==cm_form::sessionId::"+self.session_id)
+            assert(data['title'] == self.parent.FUNC_CM_FORM['title'])
+            assert('instanceXml' in data)
+
+
+        @task
+        def view_update_contact_info(self):
+            logging.info("cm-form==view_update_contact_info::contact_id::"+self.local_contact_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_VIEW_UPDATE_CONTACT_INFO['answer'],
+                "ix": self.parent.FUNC_VIEW_UPDATE_CONTACT_INFO['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="View/Update Contact Info for CM Form", checkKey="title", checkValue=self.parent.FUNC_VIEW_UPDATE_CONTACT_INFO['title'])
+            assert(data['title'] == self.parent.FUNC_VIEW_UPDATE_CONTACT_INFO['title'])
+
+
+        @task
+        def invalid_phone_number(self):
+            logging.info("cm-form==invalid_phone_number::contact_id::"+self.local_contact_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_INVALID_PHONE_NUMBER['answer'], 
+                "ix": self.parent.FUNC_INVALID_PHONE_NUMBER['ix'], 
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Invalid Phone Number for CM Form", checkKey="title", checkValue=self.parent.FUNC_INVALID_PHONE_NUMBER['title'])
+            assert(data['title'] == self.parent.FUNC_INVALID_PHONE_NUMBER['title'])
+
+
+        @task
+        def provider_name(self):
+            logging.info("cm-form==provider_name::contact_id::"+self.local_contact_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_PROVIDER_NAME['answer'],
+                "ix": self.parent.FUNC_PROVIDER_NAME['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Provider Name for CM Form", checkKey="title", checkValue=self.parent.FUNC_PROVIDER_NAME['title'])
+            assert(data['title'] == self.parent.FUNC_PROVIDER_NAME['title'])
+
+
+        @task
+        def cm_form_submit(self):
+            logging.info("cm-form==cm_form_submit::contact_id::"+self.local_contact_id)
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": {
+                    self.parent.FUNC_CM_FORM_SUBMIT['answers-key1']: [self.parent.FUNC_CM_FORM_SUBMIT['answers-value1']],
+                    self.parent.FUNC_CM_FORM_SUBMIT['answers-key2']: self.parent.FUNC_CM_FORM_SUBMIT['answers-value2']
+                },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="CM Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_CM_FORM_SUBMIT['submitResponseMessage'])
+            assert(data['submitResponseMessage'] == self.parent.FUNC_CM_FORM_SUBMIT['submitResponseMessage'])
 
 
         @task
@@ -437,6 +653,18 @@ class WorkloadModelSteps(TaskSet):
             logging.info("register-new-contact-form=rnc_form::sessionId::"+self.session_id)
             assert(data['title'] == self.parent.FUNC_RNC_FORM['title'])
             assert('instanceXml' in data)
+
+
+        @task
+        def rnc_total_number_people(self):
+            logging.info("register-new-contact-form==total_number_people::case_id::"+self.local_case_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_RNC_TOTAL_NUM_PEOPLE['answer'],
+                "ix": self.parent.FUNC_RNC_TOTAL_NUM_PEOPLE['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Total Number of People for Register New Contact Form", checkKey="title", checkValue=self.parent.FUNC_RNC_TOTAL_NUM_PEOPLE['title'])
+            assert(data['title'] == self.parent.FUNC_RNC_TOTAL_NUM_PEOPLE['title'])
 
 
         @task
@@ -618,7 +846,7 @@ class WorkloadModelSteps(TaskSet):
             data = self.parent._formplayer_post("navigate_menu", extra_json={
                 "selections" : [self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['selections']],
                 },
-                name="Search All Cases Form", checkKey="title", checkValue=self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['title'])
+                name="New Case Search Form", checkKey="title", checkValue=self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['title'])
             assert(data["title"] == self.parent.FUNC_NEW_SEARCH_ALL_CASES_FORM['title'])
 
 
@@ -627,7 +855,6 @@ class WorkloadModelSteps(TaskSet):
             logging.info("new-case-search==new_search_all_cases")
             search_value = random.choice(self.parent.SEARCH_NAMES)
             logging.info("new-case-searach==new_search_all_cases::search_term::"+search_value)
-
             data = self.parent._formplayer_post("navigate_menu", extra_json={
                 "selections" : [self.parent.FUNC_NEW_SEARCH_ALL_CASES['selections']],
                 "query_dictionary" : {"first_name" : search_value}},
@@ -637,7 +864,6 @@ class WorkloadModelSteps(TaskSet):
 
         @task
         def stop(self):
-            logging.info("new-case-search==stop")
             self.interrupt()
 
 
@@ -669,14 +895,308 @@ class WorkloadModelSteps(TaskSet):
 
         @task
         def stop(self):
-            logging.info("new-contact-search==stop")
             self.interrupt()
 
 
-    @tag('bulk-update-form')
+    @tag('bulk-update-contacts')
     @task
     # Bulk Update Contacts Form
-    class BulkUpdateFormEntry(SequentialTaskSet):
+    class BulkUpdateContactsFormEntry(SequentialTaskSet):
+        @task
+        def bulk_update_contacts_form(self):
+            logging.info("bulk-update-contacts==bulk_update_contacts_form")
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections": [self.parent.FUNC_BU_CONTACTS_FORM['selections']],
+            }, name="Bulk Update Contacts Form", checkKey="title", checkValue=self.parent.FUNC_BU_CONTACTS_FORM['title'])
+            self.session_id=data['session_id']
+            logging.info("bulk_update_contacts_form==bulk_update_contacts_form::sessionId::"+self.session_id)
+            assert(data['title'] == self.parent.FUNC_BU_CONTACTS_FORM['title'])
+            assert('instanceXml' in data)
+
+
+        @task
+        def contacts_matching_cases(self):
+            logging.info("bulk-update-contacts-form==contacts_matching_cases")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": [self.parent.FUNC_BU_CONTACTS_MATCHING['answer']],
+                "ix": self.parent.FUNC_BU_CONTACTS_MATCHING['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Contacts Matching for Bulk Update Contacts Form", checkKey="title", checkValue=self.parent.FUNC_BU_CONTACTS_MATCHING['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CONTACTS_MATCHING['title'])
+
+
+        @task
+        def assign_primary(self):
+            logging.info("bulk-update-contacts-form==assign_primary")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_ASSIGN_PRIMARY['answer'],
+                "ix": self.parent.FUNC_BU_ASSIGN_PRIMARY['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Assign Primary for Bulk Update Contacts Form", checkKey="title", checkValue=self.parent.FUNC_BU_ASSIGN_PRIMARY['title'])
+            assert(data['title'] == self.parent.FUNC_BU_ASSIGN_PRIMARY['title'])
+
+
+        @task
+        def select_owner_contacts(self):
+            logging.info("bulk-update-contacts-form==select_owner_contacts")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": [self.parent.FUNC_BU_SELECT_OWNER['answer']],
+                "ix": self.parent.FUNC_BU_SELECT_OWNER['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Select Owner for Bulk Update Contacts Form", checkKey="title", checkValue=self.parent.FUNC_BU_SELECT_OWNER['title'])
+            assert(data['title'] == self.parent.FUNC_BU_SELECT_OWNER['title'])
+
+
+        @task
+        def update_fewer_contacts(self):
+            logging.info("bulk-update-contacts-form==update_fewer_contacts")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_UPDATE_FEWER_CONTACTS['answer'],
+                "ix": self.parent.FUNC_BU_UPDATE_FEWER_CONTACTS['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Update Fewer Contacts for Bulk Update Contacts Form", checkKey="title", checkValue=self.parent.FUNC_BU_UPDATE_FEWER_CONTACTS['title'])
+            assert(data['title'] == self.parent.FUNC_BU_UPDATE_FEWER_CONTACTS['title'])
+
+
+        @task
+        def number_of_updates_contacts(self):
+            logging.info("bulk-update-contacts-form==number_of_updates_contacts")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_NUMBER_OF_UPDATES['answer'],
+                "ix": self.parent.FUNC_BU_NUMBER_OF_UPDATES['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Number of Updates for Bulk Update Contacts Form", checkKey="title", checkValue=self.parent.FUNC_BU_NUMBER_OF_UPDATES['title'])
+            assert(data['title'] == self.parent.FUNC_BU_NUMBER_OF_UPDATES['title'])
+
+
+        @task
+        def bulk_update_contacts_form_submit(self):
+            logging.info("bulk-update-contacts-form==bulk_update_contacts_form_submit")
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": {
+                    self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-key1']: [self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-value1']],
+                    self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-key2']: self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-value2'],
+                    self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-key3']: [self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-value3']],
+                    self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-key4']: self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-value4'],
+                    self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-key5']: self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['answers-value5']
+                },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Bulk Update Contacts Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['submitResponseMessage'])
+            self.session_id2=data['nextScreen']['session_id']
+            logging.info("bulk_update_contacts_form==bulk_update_contacts_form_submit::sessionId::"+self.session_id2)
+            assert(data['submitResponseMessage'] == self.parent.FUNC_BU_CONTACTS_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def update_contacts_form_submit(self):
+            logging.info("bulk-update-contacts-form==update_contacts_form_submit")
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": { },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id2,
+            }, name="Update Contacts Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_UPDATE_CONTACTS_FORM_SUBMIT['submitResponseMessage'])
+            assert(data['submitResponseMessage'] == self.parent.FUNC_UPDATE_CONTACTS_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def stop(self):
+            self.interrupt()
+
+
+    @tag('bulk-update-cases')
+    @task
+    # Bulk Update Cases Form
+    class BulkUpdateCasesFormEntry(SequentialTaskSet):
+        @task
+        def bulk_update_cases(self):
+            logging.info("bulk-update-cases==bulk_update_cases_form")
+            data = self.parent._formplayer_post("navigate_menu", extra_json={
+                "selections": [self.parent.FUNC_BU_CASES_FORM['selections']],
+            }, name="Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_FORM['title'])
+            self.session_id=data['session_id']
+            logging.info("bulk_update_cases_form==bulk_update_cases_form::sessionId::"+self.session_id)
+            assert(data['title'] == self.parent.FUNC_BU_CASES_FORM['title'])
+            assert('instanceXml' in data)
+
+
+        @task
+        def uncheck_open_cases(self):
+            logging.info("bulk-update-cases-form==uncheck_open_cases")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_UNCHECK_OPEN_CASES['answer'],
+                "ix": self.parent.FUNC_BU_CASES_UNCHECK_OPEN_CASES['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Uncheck Open Cases for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_UNCHECK_OPEN_CASES['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_UNCHECK_OPEN_CASES['title'])
+
+
+        @task
+        def uncheck_valid_phone(self):
+            logging.info("bulk-update-cases-form==uncheck_valid_phone")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_UNCHECK_VALID_PHONE['answer'],
+                "ix": self.parent.FUNC_BU_CASES_UNCHECK_VALID_PHONE['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Uncheck Valid Phone for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_UNCHECK_VALID_PHONE['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_UNCHECK_VALID_PHONE['title'])
+
+
+        @task
+        def uncheck_confirmed_cases(self):
+            logging.info("bulk-update-cases-form==uncheck_confirmed_cases")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES['answer'],
+                "ix": self.parent.FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Uncheck Valid Phone for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES['title'])
+
+
+        @task
+        def uncheck_initial_interview(self):
+            logging.info("bulk-update-cases-form==uncheck_initial_interview")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW['answer'],
+                "ix": self.parent.FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Uncheck Initial Interview for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW['title'])
+
+
+        @task
+        def uncheck_primary_owner(self):
+            logging.info("bulk-update-cases-form==uncheck_primary_owner")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER['answer'],
+                "ix": self.parent.FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Uncheck Primary Owner for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER['title'])
+
+
+        @task
+        def contacts_matching(self):
+            logging.info("bulk-update-cases-form==contacts_matching")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": [self.parent.FUNC_BU_CASES_MATCHING['answer']],
+                "ix": self.parent.FUNC_BU_CASES_MATCHING['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Contacts Matching for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_MATCHING['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_MATCHING['title'])
+
+
+        @task
+        def assign_primary_contacts(self):
+            logging.info("bulk-update-cases-form==assign_primary_contacts")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_ASSIGN_PRIMARY['answer'],
+                "ix": self.parent.FUNC_BU_CASES_ASSIGN_PRIMARY['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Assign Primary for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_ASSIGN_PRIMARY['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_ASSIGN_PRIMARY['title'])
+
+
+        @task
+        def select_owner_cases(self):
+            logging.info("bulk-update-cases-form==select_owner_cases")
+            logging.info("here1--->>>"+self.parent.FUNC_BU_CASES_SELECT_OWNER['answer'])
+            logging.info("here2--->>>"+self.parent.FUNC_BU_CASES_SELECT_OWNER['ix'])
+            logging.info("sessionId--->>>"+self.session_id)
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": [self.parent.FUNC_BU_CASES_SELECT_OWNER['answer']],
+                "ix": self.parent.FUNC_BU_CASES_SELECT_OWNER['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Select Owner for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_SELECT_OWNER['title'])
+            logging.info("data--->>>>>"+str(data))
+            assert(data['title'] == self.parent.FUNC_BU_CASES_SELECT_OWNER['title'])
+
+
+        @task
+        def update_fewer_cases(self):
+            logging.info("bulk-update-cases-form==update_fewer_cases")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_UPDATE_FEWER_CASES['answer'],
+                "ix": self.parent.FUNC_BU_CASES_UPDATE_FEWER_CASES['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Update Fewer Cases for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_UPDATE_FEWER_CASES['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_UPDATE_FEWER_CASES['title'])
+
+
+        @task
+        def number_of_updates_cases(self):
+            logging.info("bulk-update-cases-form==number_of_updates_cases")
+            data = self.parent._formplayer_post("answer", extra_json={
+                "answer": self.parent.FUNC_BU_CASES_NUMBER_OF_UPDATES['answer'],
+                "ix": self.parent.FUNC_BU_CASES_NUMBER_OF_UPDATES['ix'],
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Number of Updates for Bulk Update Cases Form", checkKey="title", checkValue=self.parent.FUNC_BU_CASES_NUMBER_OF_UPDATES['title'])
+            assert(data['title'] == self.parent.FUNC_BU_CASES_NUMBER_OF_UPDATES['title'])
+
+
+        @task
+        def bulk_update_cases_form_submit(self):
+            logging.info("bulk-update-cases-form==bulk_update_cases_form_submit")
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": {
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key1']: [self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value1']],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key2']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value2'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key3']: [self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value3']],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key4']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value4'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key5']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value5'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key6']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value6'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key7']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value7'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key8']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value8'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key9']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value9'],
+                    self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-key10']: self.parent.FUNC_BU_CASES_FORM_SUBMIT['answers-value10']
+                },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id,
+            }, name="Bulk Update Contacts Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_BU_CASES_FORM_SUBMIT['submitResponseMessage'])
+            self.session_id2=data['nextScreen']['session_id']
+            logging.info("bulk_update_contacts_form==bulk_update_contacts_form_submit::sessionId::"+self.session_id2)
+            assert(data['submitResponseMessage'] == self.parent.FUNC_BU_CASES_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def update_cases_form_submit(self):
+            logging.info("bulk-update-cases-form==update_cases_form_submit")
+            data = self.parent._formplayer_post("submit-all", extra_json={
+                "answers": { },
+                "prevalidated": True,
+                "debuggerEnabled": True,
+                "session_id":self.session_id2,
+            }, name="Update Contacts Form Submit", checkKey="submitResponseMessage", checkValue=self.parent.FUNC_UPDATE_CASES_FORM_SUBMIT['submitResponseMessage'])
+            assert(data['submitResponseMessage'] == self.parent.FUNC_UPDATE_CASES_FORM_SUBMIT['submitResponseMessage'])
+
+
+        @task
+        def stop(self):
+            self.interrupt()
+
+
+    @tag('bulk-update-form-old')
+    @task
+    # Bulk Update Contacts Form - old
+    class BulkUpdateFormEntryOld(SequentialTaskSet):
         @task
         def bulk_update_form(self):
             logging.info("bulk-update-form==bulk_update_form")
@@ -690,8 +1210,8 @@ class WorkloadModelSteps(TaskSet):
 
 
         @task
-        def contacts_matching(self):
-            logging.info("bulk-update-form==contacts_matching")
+        def contacts_matching_contacts(self):
+            logging.info("bulk-update-form==contacts_matching_contacts")
             data = self.parent._formplayer_post("answer", extra_json={
                 "answer": [self.parent.FUNC_BU_CONTACTS_MATCHING['answer']],
                 "ix": self.parent.FUNC_BU_CONTACTS_MATCHING['ix'],
@@ -702,8 +1222,8 @@ class WorkloadModelSteps(TaskSet):
 
 
         @task
-        def assign_primary(self):
-            logging.info("bulk-update-form==assign_primary")
+        def assign_primary_cases(self):
+            logging.info("bulk-update-form==assign_primary_cases")
             data = self.parent._formplayer_post("answer", extra_json={
                 "answer": self.parent.FUNC_BU_ASSIGN_PRIMARY['answer'],
                 "ix": self.parent.FUNC_BU_ASSIGN_PRIMARY['ix'],
@@ -800,40 +1320,51 @@ class WorkloadModelSteps(TaskSet):
 
         with self.client.post(f"{self.user.formplayer_host}/{command}/", json=json, name=name, catch_response=True) as response:
             data=response.json()
-            #print("data-->"+str(data))
-            #for check in checkList:
-            #    check()
-            if ("\"exception\"" in data):
-                logging.info("exception error")
-                response.failure("exception error")
+            ##logging.info("data-->"+str(data))
+            if ("exception" in data):
+                logging.info("ERROR::exception error--"+data['exception'])
+                logging.info("ERROR::user-info::"+self.user.username+"::"+self.user.login_as)
+                response.failure("exception error--"+data['exception'])
             elif (checkKey and checkKey not in data):
                 logging.info("error::"+checkKey+" not in data")
-                response.failure("error::"+checkKey+" not in data")
+                response.failure("ERROR::"+checkKey+" not in data")
             elif (checkKey and checkLen):
                 if (len(data[checkKey]) != checkLen):
-                    logging.info("error::len(data['"+checkKey+"']) != "+checkLen)
+                    logging.info("ERROR::len(data['"+checkKey+"']) != "+checkLen)
                     response.failure("error::len(data['"+checkKey+"']) != "+checkLen)
             elif (checkKey and checkValue):
                 if (data[checkKey] != checkValue):
-                    logging.info("error::data['"+checkKey+"'] != "+checkValue)
+                    logging.info("ERROR::data['"+checkKey+"'] != "+checkValue)
                     response.failure("error::data['"+checkKey+"'] != "+checkValue)
         return response.json()
 
 
 class LoginCommCareHQWithUniqueUsers(HttpUser):
     tasks= [WorkloadModelSteps]
-    wait_time = between(15, 30)
+
+    wait_time = between(45, 90)
+    ###wait_time = between(30, 60)
+    ###wait_time = between(15, 30)
     ###wait_time = between(5, 10)
+
     formplayer_host = "/formplayer" 
     project=str(os.environ.get("project"))
+    domain_user_credential_force=str(os.environ.get("user_credential"))
+    app_config_force=str(os.environ.get("app_config"))
 
     with open("project-config/"+project+"/config.yaml") as f:
         config = yaml.safe_load(f)
         host = config['host']
         domain = config['domain']
         app_id = config['app_id']
-        domain_user_credential = config['domain_user_credential']
-        app_config = config['app_config']
+        if (domain_user_credential_force!="None"):
+            domain_user_credential = "project-config/"+project+"/"+domain_user_credential_force 
+        else:
+            domain_user_credential = config['domain_user_credential']
+        if (app_config_force!="None"):
+            app_config = "project-config/"+project+"/"+app_config_force
+        else:
+            app_config = config['app_config']
         owner_id = config['owner_id']
         case_type = config['case_type']
 
@@ -852,4 +1383,8 @@ class LoginCommCareHQWithUniqueUsers(HttpUser):
 
         logging.info("host-->>>"+self.host)
         logging.info("login_as-->>>"+self.login_as)
+        logging.info("username-->>>"+self.username)
+        logging.info("domain-->>>"+self.domain)
+        logging.info("domain_user_credential-->>>"+self.domain_user_credential)
+        logging.info("app_config-->>>"+self.app_config)
 

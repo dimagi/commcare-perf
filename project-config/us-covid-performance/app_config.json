@@ -1,9 +1,10 @@
 {
     "MOD_SKIP": {
-        "get_all_cases_info":"", "check_in_form":""
+        "get_all_cases_info":"", "check_out_form":"", "get_all_contacts_info":"true"
     },
-    "ALL_CASES": {
-        "filter":"transfer_status != 'sent' and transfer_status != 'pending' and (patient_type = 'confirmed' or next_form = 'pui_form')"
+    "CASES_LIST_FILTER": {
+        "all_cases_filter":"transfer_status != 'sent' and transfer_status != 'pending' and (patient_type = 'confirmed' or next_form = 'pui_form')",
+        "all_contacts_filter":""
     },
     "SEARCH_NAMES": [
         "Aki", "Graham", "Samic", "Jet", "Petty", "Knack", "Elle", "Leer", "Mike", "John",
@@ -17,8 +18,11 @@
         "Monty", "Minnie", "Mack", "Strone", "Owen", "Lewis", "Kat", "Sal", "Joyce", "Tick",
         "Ty", "Ira", "Shee", "Marcus", "Sil", "Antro", "Mark", "Ette", "Poppa", "Tom"
     ],
+    "FUNC_USER_CHECK_OUT_FORM": {
+        "selections":"0", "title":"Proceed to Check Out"
+    },
     "FUNC_USER_CHECK_IN_FORM": {
-        "selections":"0", "title1":"Check In","title2":"Proceed to Check Out"
+        "selections":"0", "title":"Check In"
     },
     "FUNC_USER_CHECK_IN": {
         "answers-key":"4", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
