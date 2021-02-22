@@ -31,12 +31,25 @@ run time, etc.
 Usage for commcarehq.py
 ^^^^^^^^^^^^^^^^^^^^^^
 
-``env project=us-covid-performance locust -f commcarehq.py --headless  -u 1 -r 1 -t 10m --csv=[csv_location_and_name] --logfile=[log_location_and_name] --tags all``
+to specifiy which project to test via env project (use default user credential and app config)
 
-tags for projects:
+``env project=us-covid-performance locust -f commcarehq.py --headless  -u 1 -r 1 -t 10m --csv=[csv_location_and_name] --logfile=[log_location_and_name] --tags home_screen``
+
+to include dffernt user credential and app config to test via env user_credential and app_config
+
+``env user_credential=user_credentials_ci.json app_config=app_config_ci.json project=covid-ny-staging-linked-app locust -f commcarehq.py --headless -u 1 -r 1 -t 10m --csv=[csv_location_and_name] --logfile=[log_location_and_name] --tags home_screen``
+
+available tags for projects:
 
 covid-ny-staging — tags: home_screen all_cases_case_list all_open_cases_case_list all_closed_cases_case_list ci-form id-form register-new-contact-form
+
+covid-ny-staging-linked-app - tags: home_screen all_cases_case_list all_open_cases_case_list all_closed_cases_case_list all_contacts_case_list all_open_contacts_case_list all_closed_contacts_case_list ci-form register-new-contact-form cm-form bulk-update-contacts bulk-update-cases new-case-search new-contact-search
+
+covid-ny-staging-linked-app ci - tags: home_screen all_cases_case_list all_open_cases_case_list all_closed_cases_case_list ci-form register-new-contact-form new-case-search 
+
+covid-ny-staging-linked-app ct - tags: home_screen all_contacts_case_list all_open_contacts_case_list all_closed_contacts_case_list cm-form new-contact-search
 
 us-covid-performance — tags: home_screen all_cases_case_list all_open_cases_case_list all_closed_cases_case_list new-case-search new-contact-search 
 
 us-covid-performance-bulk — tags: bulk-update-form
+
