@@ -1,0 +1,8 @@
+host: https://staging.commcarehq.org
+domain: covid-ny-staging
+## NY App - locust test
+app_id: 8db3b89107994b9d94db1c54fac2bfc5 
+domain_user_credential: project-config/covid-ny-staging-locust/user_credentials.json
+owner_id: 6170f82f99fd4ea2a84d383efaa8fbbd
+case_type: patient
+app_config: project-config/covid-ny-staging-locust/app_config.json

@@ -1,10 +1,10 @@
 {
     "MOD_SKIP": {
-        "get_all_cases_info":"true", "check_out_form":"", "get_all_contacts_info":"true"
+        "get_all_cases_info":"true", "check_out_form":"", "get_all_contacts_info":""
     },
     "CASES_LIST_FILTER": {
-        "all_cases_filter":"(patient_type = 'confirmed' or next_form = 'pui_form' or next_form = 'change_pui_status') and transfer_status != 'sent' and transfer_status != 'pending' and stub !='yes' and (current_status != 'closed')",
-        "all_contacts_filter":""
+        "all_cases_filter":"",
+        "all_contacts_filter":"transfer_status != 'sent' and transfer_status != 'pending' and ((assigned_to_primary_username='ct_a1' and is_assigned_primary='yes') or (assigned_to_temp_username='ct_a1' and is_assigned_temp='yes'))"
     },
     "SEARCH_NAMES": [
         "Aki", "Graham", "Samic", "Jet", "Petty", "Knack", "Elle", "Leer", "Mike", "John",
@@ -65,6 +65,30 @@
     },
     "FUNC_CI_FORM_SUBMIT": {
         "answers-key1":"11,2", "answers-value1":"2", "answers-key2":"15,0", "answers-value2":"2", "answers-key3":"17,7", "answers-value3":"1", "answers-key4":"17,8", "answers-value4":"something", "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_CM_CASE_DETAILS": {
+        "selections":"24", "checkKey":"details", "checkLen":1
+    },
+    "FUNC_CM_FORM": {
+        "selections":"24", "subselections":"1", "title":"Contact Monitoring"
+    },
+    "FUNC_INVALID_PHONE_NUMBER": {
+        "answer":"2", "ix":"16,3", "title":"Contact Monitoring"
+    },
+    "FUNC_PROVIDER_NAME": {
+        "answer":"provider test ush migration", "ix":"18,0", "title":"Contact Monitoring"
+    },
+    "FUNC_CM_FORM_SUBMIT": {
+        "answers-key1":"16,3", "answers-value1":"2", "answers-key2":"18,0", "answers-value2":"provider name test", "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_ID_FORM": {
+        "selections":"6", "subselections":"0", "title":"Identify Duplicate Patient"
+    },
+    "FUNC_ALTERNATE_PHONE_NUMBER": {
+        "answer":"2", "ix":"5", "title":"Identify Duplicate Patient"
+    },
+    "FUNC_ALTERNATE_PHONE_NUMBER_ENTER": {
+        "answer":"1111111111", "ix":"7,0", "title":"Identify Duplicate Patient"
     },
     "FUNC_ID_FORM": {
         "selections":"6", "subselections":"0", "title":"Identify Duplicate Patient"

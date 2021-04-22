@@ -3,8 +3,8 @@
         "get_all_cases_info":"", "check_out_form":"", "get_all_contacts_info":"true"
     },
     "CASES_LIST_FILTER": {
-        "all_cases_filter":"(patient_type = 'confirmed' or next_form = 'pui_form' or next_form = 'change_pui_status') and transfer_status != 'sent' and transfer_status != 'pending' and stub !='yes' and ((assigned_to_primary_username='ci_a1' and is_assigned_primary='yes') or (assigned_to_temp_username='ci_a1' and is_assigned_temp='yes'))",
-        "all_contacts_filter":""
+        "all_cases_filter":"(patient_type = 'confirmed' or next_form = 'pui_form' or next_form = 'change_pui_status') and transfer_status != 'sent' and transfer_status != 'pending' and stub !='yes' and (current_status != 'closed')",
+        "all_contacts_filter":"transfer_status != 'sent' and transfer_status != 'pending'"
     },
     "SEARCH_NAMES": [
         "Aki", "Graham", "Samic", "Jet", "Petty", "Knack", "Elle", "Leer", "Mike", "John",
@@ -22,40 +22,40 @@
         "selections":"0", "title":"Proceed to Check Out"
     },
     "FUNC_USER_CHECK_IN_FORM": {
-        "selections":"1", "title":"Check In"
+        "selections":"0", "title":"Check In"
     },
     "FUNC_USER_CHECK_IN": {
         "answers-key":"4", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_HOME_SCREEN": {
-        "title":"USH Migration Copy"
+        "title":"NY App - locust test"
     },
     "FUNC_ALL_CASES_CASE_LIST": {
-        "selections":"5", "title":"All Cases"
+        "selections":"6", "title":"All Cases"
     },
     "FUNC_ALL_OPEN_CASES_CASE_LIST": {
-        "selections":"3", "title":"All Open Cases"
+        "selections":"4", "title":"All Open Cases"
     },
     "FUNC_ALL_CLOSED_CASES_CASE_LIST": {
-        "selections":"4", "title":"All Closed Cases"
+        "selections":"5", "title":"All Closed Cases"
     },
     "FUNC_CASE_DETAILS": {
-        "selections":"5", "checkKey":"details", "checkLen":5
+        "selections":"6", "checkKey":"details", "checkLen":5
     },
     "FUNC_CI_FORM": {
-        "selections":"5", "subselections":"1", "title":"Case Investigation"
+        "selections":"6", "subselections":"1", "title":"Case Investigation"
     },
     "FUNC_PART_OF_CLUSTER": {
-        "answer":"2", "ix":"15,0", "title":"Case Investigation"
+        "answer":"2", "ix":"14,0", "title":"Case Investigation"
     },
     "FUNC_HOSPITALIZED": {
-        "answer":"1", "ix":"17,7", "title":"Case Investigation"
+        "answer":"1", "ix":"16,7", "title":"Case Investigation"
     },
     "FUNC_HOSPITAL_NAME": {
-        "answer":"something", "ix":"17,8", "title":"Case Investigation"
+        "answer":"2", "ix":"16,8,0", "title":"Case Investigation"
     },
     "FUNC_CI_FORM_SUBMIT": {
-        "answers-key1":"11,2", "answers-value1":"2", "answers-key2":"15,0", "answers-value2":"2", "answers-key3":"17,7", "answers-value3":"1", "answers-key4":"17,8", "answers-value4":"something", "submitResponseMessage":"Form successfully saved!"
+        "answers-key1":"9,2", "answers-value1":"2", "answers-key2":"14,0", "answers-value2":"2", "answers-key3":"16,7", "answers-value3":"1", "answers-key4":"16,8,0", "answers-value4":"2", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_ID_FORM": {
         "selections":"6", "subselections":"0", "title":"Identify Duplicate Patient"
@@ -70,7 +70,10 @@
         "answers-key":"10", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_RNC_FORM": {
-        "selections":"6", "subselections":"3", "title":"Register New Contact(s)"
+        "selections":"6", "subselections":"2", "title":"Register New Contact(s)"
+    },
+    "FUNC_RNC_TOTAL_NUM_PEOPLE": {
+        "answer":"3", "ix":"5,0", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_FIRST_NAME": {
         "answer":"first", "ix":"5,2,0_0,2,1", "title":"Register New Contact(s)"
@@ -79,28 +82,28 @@
         "answer":"last", "ix":"5,2,0_0,2,2", "title":"Register New Contact(s)"
     }, 
     "FUNC_RNC_SCHOOL_SETTING": {
-        "answer":"9", "ix":"5,2,0_0,2,15", "title":"Register New Contact(s)"
-    }, 
+        "answer":"10", "ix":"5,2,0_0,2,16", "title":"Register New Contact(s)"
+    },
     "FUNC_RNC_SCHOOL_PREK": {
-        "answer":"2", "ix":"5,2,0_0,2,18,0", "title":"Register New Contact(s)"
-    }, 
+        "answer":"2", "ix":"5,2,0_0,2,19,0", "title":"Register New Contact(s)"
+    },
     "FUNC_RNC_COLLEGE_UNIVERSITY": {
-        "answer":"2", "ix":"5,2,0_0,2,18,2,0", "title":"Register New Contact(s)"
-    }, 
+        "answer":"2, 3", "ix":"5,2,0_0,2,19,0", "title":"Register New Contact(s)"
+    },
     "FUNC_RNC_NAME_OF_SCHOOL": {
-        "answer":"2", "ix":"5,2,0_0,2,18,0", "title":"Register New Contact(s)"
+        "answer":"2", "ix":"5,2,0_0,2,19,2,0", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_NAME_OF_UNIVERSITY": {
-        "answer":"2", "ix":"5,2,0_0,2,18,3,0", "title":"Register New Contact(s)"
+        "answer":"2", "ix":"5,2,0_0,2,19,3,0", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_PREFERRED_LANGUAGE": {
-        "answer":"1", "ix":"5,2,0_0,2,20", "title":"Register New Contact(s)"
+        "answer":"1", "ix":"5,2,0_0,2,21", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_LAST_DATE_TEST": {
-        "answer":"2021-01-06", "ix":"5,2,0_0,2,28", "title":"Register New Contact(s)"
+        "answer":"2021-01-06", "ix":"5,2,0_0,2,29", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_FORM_SUBMIT": {
-        "answers-key1":"5,2,0_0,2,1", "answers-value1":"test-2 first name", "answers-key2":"5,2,0_0,2,2", "answers-value2":"test-2 last name", "answers-key3":"5,2,0_0,2,15", "answers-value3":"9", "answers-key4":"5,2,0_0,2,18,0", "answers-value4":"2, 3", "answers-key5":"5,2,0_0,2,18,2,0", "answers-value5":"2", "answers-key6":"5,2,0_0,2,18,3,0", "answers-value6":"2", "answers-key7":"5,2,0_0,2,20", "answers-value7":"1", "answers-key8":"5,2,0_0,2,28", "answers-value8":"2021-01-06", "submitResponseMessage":"Form successfully saved!"
+        "answers-key1":"5,2,0_0,2,1", "answers-value1":"test-2 first name", "answers-key2":"5,2,0_0,2,2", "answers-value2":"test-2 last name", "answers-key3":"5,2,0_0,2,16", "answers-value3":"10", "answers-key4":"5,2,0_0,2,19,0", "answers-value4":"2, 3", "answers-key5":"5,2,0_0,2,19,2,0", "answers-value5":"2", "answers-key6":"5,2,0_0,2,19,3,0", "answers-value6":"2", "answers-key7":"5,2,0_0,2,21", "answers-value7":"1", "answers-key8":"5,2,0_0,2,29", "answers-value8":"2021-01-06", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_CASE_CLAIM_SEARCH": {
         "selections":"34", "title":"Search All Cases"
@@ -109,16 +112,16 @@
         "selections":"5", "title":"All Cases"
     },
     "FUNC_NEW_SEARCH_ALL_CASES_FORM": {
-        "selections":"37", "title":"Testing Module - Search All Cases"
+        "selections":"2", "title":"Record Search"
     },
     "FUNC_NEW_SEARCH_ALL_CASES": {
-        "selections":"37", "title":"Testing Module - Search All Cases" 
+        "selections":"2", "title":"Record Search" 
     },
     "FUNC_NEW_SEARCH_ALL_CONTACTS_FORM": {
-        "selections":"38", "title":"Testing Module - Search All Contacts" 
+        "selections":"38", "title":"Record Search" 
     },
     "FUNC_NEW_SEARCH_ALL_CONTACTS": {
-        "selections":"38", "title":"Testing Module - Search All Contacts"
+        "selections":"38", "title":"Record Search"
     },
     "FUNC_BU_CONTACTS_FORM": {
         "selections":"0", "subselections":"0", "title":"Bulk Update Contacts"

@@ -1,10 +1,10 @@
 {
     "MOD_SKIP": {
-        "get_all_cases_info":"", "check_out_form":"", "get_all_contacts_info":""
+        "get_all_cases_info":"true", "check_out_form":"", "get_all_contacts_info":""
     },
     "CASES_LIST_FILTER": {
         "all_cases_filter":"(patient_type = 'confirmed' or next_form = 'pui_form' or next_form = 'change_pui_status') and transfer_status != 'sent' and transfer_status != 'pending' and stub !='yes' and (current_status != 'closed')",
-        "all_contacts_filter":""
+        "all_contacts_filter":"transfer_status != 'sent' and transfer_status != 'pending'"
     },
     "SEARCH_NAMES": [
         "Aki", "Graham", "Samic", "Jet", "Petty", "Knack", "Elle", "Leer", "Mike", "John",
@@ -22,37 +22,37 @@
         "selections":"0", "title":"Proceed to Check Out"
     },
     "FUNC_USER_CHECK_IN_FORM": {
-        "selections":"1", "title":"Check In"
+        "selections":"0", "title":"Check In"
     },
     "FUNC_USER_CHECK_IN": {
         "answers-key":"4", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_HOME_SCREEN": {
-        "title":"USH Migration Copy"
+        "title":"NY App - locust test"
     },
     "FUNC_ALL_CASES_CASE_LIST": {
-        "selections":"5", "title":"All Cases"
+        "selections":"6", "title":"All Cases"
     },
     "FUNC_ALL_OPEN_CASES_CASE_LIST": {
-        "selections":"3", "title":"All Open Cases"
+        "selections":"4", "title":"All Open Cases"
     },
     "FUNC_ALL_CLOSED_CASES_CASE_LIST": {
-        "selections":"4", "title":"All Closed Cases"
+        "selections":"5", "title":"All Closed Cases"
     },
     "FUNC_ALL_CONTACTS_CASE_LIST": {
-        "selections":"35", "title":"All Contacts"
+        "selections":"18", "title":"All Contacts"
     },
     "FUNC_ALL_OPEN_CONTACTS_CASE_LIST": {
-        "selections":"33", "title":"All Open Contacts"
+        "selections":"16", "title":"All Open Contacts"
     },
     "FUNC_ALL_CLOSED_CONTACTS_CASE_LIST": {
-        "selections":"34", "title":"All Closed Contacts"
+        "selections":"17", "title":"All Closed Contacts"
     },
     "FUNC_CASE_DETAILS": {
-        "selections":"5", "checkKey":"details", "checkLen":5
+        "selections":"6", "checkKey":"details", "checkLen":5
     },
     "FUNC_CI_FORM": {
-        "selections":"5", "subselections":"1", "title":"Case Investigation"
+        "selections":"6", "subselections":"1", "title":"Case Investigation"
     },
     "FUNC_PART_OF_CLUSTER": {
         "answer":"2", "ix":"15,0", "title":"Case Investigation"
@@ -67,19 +67,19 @@
         "answers-key1":"11,2", "answers-value1":"2", "answers-key2":"15,0", "answers-value2":"2", "answers-key3":"17,7", "answers-value3":"1", "answers-key4":"17,8", "answers-value4":"something", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_CM_CASE_DETAILS": {
-        "selections":"35", "checkKey":"details", "checkLen":1
+        "selections":"18", "checkKey":"details", "checkLen":1
     },
     "FUNC_CM_FORM": {
-        "selections":"35", "subselections":"1", "title":"Contact Monitoring"
+        "selections":"18", "subselections":"1", "title":"Contact Monitoring"
     },
     "FUNC_INVALID_PHONE_NUMBER": {
         "answer":"2", "ix":"16,3", "title":"Contact Monitoring"
     },
     "FUNC_PROVIDER_NAME": {
-        "answer":"provider supervisor test name", "ix":"18,0", "title":"Contact Monitoring"
+        "answer":"provider test name", "ix":"18,0", "title":"Contact Monitoring"
     },
     "FUNC_CM_FORM_SUBMIT": {
-        "answers-key1":"16,3", "answers-value1":"2", "answers-key2":"18,0", "answers-value2":"provider supervisor name test", "submitResponseMessage":"Form successfully saved!"
+        "answers-key1":"16,3", "answers-value1":"2", "answers-key2":"18,0", "answers-value2":"provider name test", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_ID_FORM": {
         "selections":"6", "subselections":"0", "title":"Identify Duplicate Patient"
@@ -94,10 +94,7 @@
         "answers-key":"10", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_RNC_FORM": {
-        "selections":"5", "subselections":"2", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_TOTAL_NUM_PEOPLE": {
-        "answer":"3", "ix":"5,0", "title":"Register New Contact(s)"
+        "selections":"6", "subselections":"2", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_FIRST_NAME": {
         "answer":"first", "ix":"5,2,0_0,2,1", "title":"Register New Contact(s)"
@@ -127,7 +124,7 @@
         "answer":"2021-01-06", "ix":"5,2,0_0,2,28", "title":"Register New Contact(s)"
     },
     "FUNC_RNC_FORM_SUBMIT": {
-        "answers-key1":"5,2,0_0,2,1", "answers-value1":"ush migratoin first name", "answers-key2":"5,2,0_0,2,2", "answers-value2":"ush migration last name", "answers-key3":"5,2,0_0,2,15", "answers-value3":"9", "answers-key4":"5,2,0_0,2,18,0", "answers-value4":"2, 3", "answers-key5":"5,2,0_0,2,18,2,0", "answers-value5":"2", "answers-key6":"5,2,0_0,2,18,3,0", "answers-value6":"2", "answers-key7":"5,2,0_0,2,20", "answers-value7":"1", "answers-key8":"5,2,0_0,2,28", "answers-value8":"2021-01-06", "submitResponseMessage":"Form successfully saved!"
+        "answers-key1":"5,2,0_0,2,1", "answers-value1":"test-2 first name", "answers-key2":"5,2,0_0,2,2", "answers-value2":"test-2 last name", "answers-key3":"5,2,0_0,2,15", "answers-value3":"9", "answers-key4":"5,2,0_0,2,18,0", "answers-value4":"2, 3", "answers-key5":"5,2,0_0,2,18,2,0", "answers-value5":"2", "answers-key6":"5,2,0_0,2,18,3,0", "answers-value6":"2", "answers-key7":"5,2,0_0,2,20", "answers-value7":"1", "answers-key8":"5,2,0_0,2,28", "answers-value8":"2021-01-06", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_CASE_CLAIM_SEARCH": {
         "selections":"34", "title":"Search All Cases"
@@ -136,46 +133,37 @@
         "selections":"5", "title":"All Cases"
     },
     "FUNC_NEW_SEARCH_ALL_CASES_FORM": {
-        "selections":"37", "title":"Testing Module - Search All Cases"
+        "selections":"37", "title":"Record Search"
     },
     "FUNC_NEW_SEARCH_ALL_CASES": {
-        "selections":"37", "title":"Testing Module - Search All Cases" 
+        "selections":"37", "title":"Record Search" 
     },
     "FUNC_NEW_SEARCH_ALL_CONTACTS_FORM": {
-        "selections":"38", "title":"Testing Module - Search All Contacts" 
+        "selections":"2", "title":"Record Search" 
     },
     "FUNC_NEW_SEARCH_ALL_CONTACTS": {
-        "selections":"38", "title":"Testing Module - Search All Contacts"
+        "selections":"2", "title":"Record Search"
     },
     "FUNC_BU_CONTACTS_FORM": {
-        "selections":"36", "title":"Bulk Update Contacts"
+        "selections":"0", "subselections":"0", "title":"Bulk Update Contacts"
     },  
-    "FUNC_BU_SELECT_WITHOUT_PRIMARY": {
-        "answer":"None", "ix":"2,1,3", "title":"Bulk Update Contacts"
-    },
     "FUNC_BU_CONTACTS_MATCHING": {
-        "answer":"1", "ix":"2,4", "title":"Bulk Update Contacts"
+        "answer":"1", "ix":"1,5", "title":"Bulk Update Contacts"
     },
-    "FUNC_BU_CONTACTS_ASSIGN_ACTION": {
-        "answer":"1", "ix":"3,0", "title":"Bulk Update Contacts"
+    "FUNC_BU_ASSIGN_PRIMARY": {
+        "answer":"1", "ix":"2,0", "title":"Bulk Update Contacts"
     },
-    "FUNC_BU_CONTACTS_SELECT_OWNER": {
-        "answer":"1", "ix":"3,1,5", "title":"Bulk Update Contacts"
+    "FUNC_BU_SELECT_OWNER": {
+        "answer":"2", "ix":"2,1,0", "title":"Bulk Update Contacts"
     },
     "FUNC_BU_UPDATE_FEWER_CONTACTS": {
-        "answer":"2", "ix":"4,1", "title":"Bulk Update Contacts"
+        "answer":"2", "ix":"3,1", "title":"Bulk Update Contacts"
     },
     "FUNC_BU_NUMBER_OF_UPDATES": {
-        "answer":"1", "ix":"4,2", "title":"Bulk Update Contacts"
+        "answer":"200", "ix":"3,2", "title":"Bulk Update Contacts"
     },
     "FUNC_BU_CONTACTS_FORM_SUBMIT": {
-        "answers-key-select-without-primary":"2,1,3", "answers-value-select-without-primary":"None",
-        "answers-key-contacts-matching":"2,4", "answers-value-contacts-matching":"1",
-        "answers-key-assign-action":"3,0", "answers-value-assign-action":"1",
-        "answers-key-select-owner":"3,1,5", "answers-value-select-owner":"1",
-        "answers-key-update-fewer-contacts":"4,1", "answers-value-update-fewer-contacts":"2",
-        "answers-key-number-of-updates":"4,2", "answers-value-number-of-updates":"1",
-        "submitResponseMessage":"Form successfully saved!"
+        "answers-key1":"1,5", "answers-value1":"1", "answers-key2":"2,0", "answers-value2":"1", "answers-key3":"2,1,0", "answers-value3":"2", "answers-key4":"3,1", "answers-value4":"2", "answers-key5":"3,2", "answers-value5":"200", "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_UPDATE_CONTACTS_FORM_SUBMIT": {
         "submitResponseMessage":"Form successfully saved!"
