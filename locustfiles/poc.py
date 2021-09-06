@@ -1,5 +1,4 @@
 import os
-import yaml
 
 from collections import defaultdict
 from locust import HttpUser, between, task
@@ -8,28 +7,25 @@ from lxml import etree
 
 class WebsiteUser(HttpUser):
     wait_time = between(5, 15)
-
-    host = "https://staging.commcarehq.org"
     formplayer_host = "/formplayer"             # settings.FORMPLAYER_URL
 
-    def on_start(self):
-        self._read_config()
-        self._log_in()
-        self._get_build_id()
-        self._restore()          # initial restore to populate self.patient_case_ids
+    def __init__(self, *args, **kwargs):
+        self.username = os.environ['CCHQ_USERNAME']
+        self.password = os.environ['CCHQ_PASSWORD']
+        self.domain = os.environ['CCHQ_DOMAIN']
+        self.app_id = os.environ['CCHQ_APP_ID']
+        self.login_as = os.environ['CCHQ_LOGIN_AS']
+        self.build_id = None
+        super().__init__(*args, **kwargs)
 
-    def _read_config(self):
-        with open("config.yaml") as f:
-            config = yaml.safe_load(f)
-            self.domain = config['domain']
-            self.login_as = config['login_as']
-            self.app_id = config['app_id']
-            self.username = os.environ.get('LOCUST_USERNAME')
-            self.password = os.environ.get('LOCUST_PASSWORD')
+    def on_start(self):
+        self._log_in()
+        self.build_id = self._get_build_id()
+        self._restore()          # initial restore to populate self.patient_case_ids
 
     def _log_in(self):
         login_url = f'/a/{self.domain}/login/'
-        response = self.client.get(login_url)
+        self.client.get(login_url)  # Get cookies
         response = self.client.post(
             login_url,
             {
@@ -48,12 +44,10 @@ class WebsiteUser(HttpUser):
     def _get_build_id(self):
         response = self.client.get(f'/a/{self.domain}/cloudcare/apps/v2/?option=apps', name='Web Apps apps')
         assert(response.status_code == 200)
-        build_id_map = {
-            app['copy_of']: app['_id']
-            for app in response.json()
-        }
-        assert(self.app_id in build_id_map)
-        self.build_id = build_id_map[self.app_id]
+        for app in response.json():
+            if app['copy_of'] == self.app_id:
+                return app['_id']
+        assert False, (f'"copy_of": "{self.app_id}" not found ', response.json())
 
     def _restore(self):
         url = f'/a/{self.domain}/phone/restore/{self.build_id}/?skip_fixtures=true'

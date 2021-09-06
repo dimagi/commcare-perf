@@ -12,13 +12,24 @@ Installation and setup
 
     $ pip install -r requirements.txt
 
-The following environment variables are required:
+The following environment variables are required for mobile worker
+performance testing:
 
 * CCHQ_DOMAIN: The test domain name
 * CCHQ_APP_ID: The ID of the test app
 * CCHQ_USERNAME: The username of a CommCare HQ mobile worker who is a
   member of the test domain. e.g. "j.doe@test-domain.commcarehq.org"
 * CCHQ_PASSWORD: Their password
+
+The following are used for formplayer performance testing:
+
+* CCHQ_DOMAIN: The test domain name
+* CCHQ_APP_ID: The ID of the test app
+* CCHQ_USERNAME: The username of a web user
+* CCHQ_PASSWORD: Their password
+* CCHQ_LOGIN_AS (optional): The mobile worker that
+  the web user should log in as. Please exclude the domain name, e.g.
+  "j.doe"
 
 You can use the Locust environment variable ``LOCUST_HOST`` to set the
 base URL of the CommCare HQ instance, e.g.
