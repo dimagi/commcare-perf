@@ -62,13 +62,12 @@ class MobileUser(HttpUser):
 
     def _get_build_id(self):
         url = f'/a/{self.domain}/cloudcare/apps/v2/?option=apps'
-        auth = (os.environ['CCHQ_USERNAME'], os.environ['CCHQ_PASSWORD'])
-        response = self.client.get(url, auth=auth, name='apps')
+        response = self.client.get(url, name='apps')
         assert response.status_code == 200, response.text
-        apps = response.json()
-        for app in apps:
-            if app['copy_of'] == self.app_id:
-                return app['_id']
+        return next(
+            app['_id'] for app in response.json()
+            if app['copy_of'] == self.app_id
+        )
 
 
 xform = """<?xml version='1.0' ?>

@@ -44,10 +44,10 @@ class WebsiteUser(HttpUser):
     def _get_build_id(self):
         response = self.client.get(f'/a/{self.domain}/cloudcare/apps/v2/?option=apps', name='Web Apps apps')
         assert(response.status_code == 200)
-        for app in response.json():
-            if app['copy_of'] == self.app_id:
-                return app['_id']
-        assert False, (f'"copy_of": "{self.app_id}" not found ', response.json())
+        try:
+            return next(app['_id'] for app in response.json() if app['copy_of'] == self.app_id)
+        except StopIteration:
+            raise ValueError(f'"copy_of": "{self.app_id}" not found in {response.json()!r}')
 
     def _restore(self):
         url = f'/a/{self.domain}/phone/restore/{self.build_id}/?skip_fixtures=true'
