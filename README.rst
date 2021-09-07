@@ -8,22 +8,48 @@ based on `LocustIO <https://locust.io/>`_.
 Installation and setup
 ^^^^^^^^^^^^^^^^^^^^^^
 
-``pip install -r requirements.txt``
+ ::
 
-A CommCareHQ web user who is a member of the test domain is required. This user's
-username and password should be specified as the environment variables ``LOCUST_USERNAME``
-and ``LOCUST_PASSWORD``.
+    $ pip install -r requirements.txt
 
-Domain and application, both required, are specified in ``config.yaml``.
-Username to login as may also be included.
+The following environment variables are required for mobile worker
+performance testing:
+
+* CCHQ_DOMAIN: The test domain name
+* CCHQ_APP_ID: The ID of the test app
+* CCHQ_USERNAME: The username of a CommCare HQ mobile worker who is a
+  member of the test domain. e.g. "j.doe@test-domain.commcarehq.org"
+* CCHQ_PASSWORD: Their password
+
+The following are used for formplayer performance testing:
+
+* CCHQ_DOMAIN: The test domain name
+* CCHQ_APP_ID: The ID of the test app
+* CCHQ_USERNAME: The username of a web user
+* CCHQ_PASSWORD: Their password
+* CCHQ_LOGIN_AS (optional): The mobile worker that
+  the web user should log in as. Please exclude the domain name, e.g.
+  "j.doe"
+
+You can use the Locust environment variable ``LOCUST_HOST`` to set the
+base URL of the CommCare HQ instance, e.g.
+``LOCUST_HOST=https://staging.commcarehq.org``. Alternatively, use
+the ``-H`` or ``--host`` command line option.
+
+Environment variables are stored in ``config.env``, which uses the same
+format as ``/etc/environment`` or a Docker Compose `env_file`_.
 
 Configuring and running
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Basic usage, for a single test user:
+Basic usage, for a single test user::
 
-``env LOCUST_USERNAME=$LOCUST_USERNAME env LOCUST_PASSWORD=$LOCUST_PASSWORD locust -f poc.py --headless -u 1 -r 1``
+    $ export $(grep -v '^#' config.env | xargs)
+    $ locust -f form_submission.py --headless -u 1 -r 1
 
 Leave off ``--headless`` to view results in the Locust web UI. See
-`docs <https://docs.locust.io/en/stable/running-locust-without-web-ui.html>`_ for options to set number of users,
-run time, etc.
+`docs`_ for options to set number of users, run time, etc.
+
+
+.. _env_file: https://docs.docker.com/compose/env-file/
+.. _docs: https://docs.locust.io/en/stable/running-locust-without-web-ui.html
