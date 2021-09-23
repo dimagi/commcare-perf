@@ -33,7 +33,11 @@ class MobileUser(HttpUser):
     def submit_form(self):
         url = f'/a/{self.domain}/receiver/{self.app_id}/'
         instance_id = str(uuid4())
-        data = xform.format(instance_id=instance_id).encode('utf-8')
+        case_id = str(uuid4())
+        data = xform.format(
+            instance_id=instance_id,
+            case_id=case_id,
+        ).encode('utf-8')
         auth = (os.environ['CCHQ_USERNAME'], os.environ['CCHQ_PASSWORD'])
         headers = {'Content-Type': 'text/html; charset=UTF-8'}
         response = self.client.post(
