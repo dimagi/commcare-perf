@@ -42,37 +42,17 @@ Getting started
    affected.
 
 
-Extending the script
---------------------
+Submitting your own forms
+-------------------------
 
-At the time of writing, the script ``locustfiles/form_submission.py``
-uses a very small form for testing; it has only two, empty questions.
-The form is defined at the end of the file:
+``locustfiles/form_submission.py`` uses three example form submissions
+for testing. They are saved in the ``xforms/`` directory.
 
-.. code:: python
-
-    xform = """<?xml version='1.0' ?>
-    <data xmlns:jrm="http://dev.commcarehq.org/jr/xforms"
-          xmlns="https://www.commcarehq.org/test/LocustPerfTesting/">
-        <foo/>
-        <bar/>
-        <meta>
-            <deviceID>LocustPerfTesting</deviceID>
-            <timeStart>2011-10-01T15:25:18.404-04</timeStart>
-            <timeEnd>2011-10-01T15:26:29.551-04</timeEnd>
-            <username>admin</username>
-            <userID>testy.mctestface</userID>
-            <instanceID>{instance_id}</instanceID>
-        </meta>
-    </data>
-    """
-
-If you would like to use a real form submission, you can find one in
+If you would like to use your own form submissions, you can find them in
 CommCare.
 
 1. Navigate to "Reports" > "Case List", and find a sample case with test
-   data. (Do not use a real case, because we will be submitting test
-   data to it.)
+   data. (Do not use a real case.)
 
 2. Select the case, and choose the "Case History" tab.
 
@@ -81,24 +61,16 @@ CommCare.
 
 4. Choose "Raw XML".
 
-5. Copy and paste the XML into ``locustfiles/form_submission.py``,
-   replacing the current form.
+5. Copy and paste the XML into a file and save it in the ``xforms/``
+   directory.
 
-6. Find the ``<n1:instanceID>`` tag, and replace its value with
-   ``{instance_id}``. The result should look like::
+6. Repeat steps 1 to 5 for as many forms as you wish to submit.
 
-       <n1:instanceID>{instance_id}</n1:instanceID>
+7. ``locustfiles/form_submission.py`` will submit all the files it finds
+   in the ``xforms/`` directory. If you don't want to use the original
+   examples, just delete them.
 
-7. If the form registers a case, find the tag that sets the case ID. It
-   starts ``<n0:case case_id="...``. Change the case ID to
-   ``{case_id}``. The result should look like::
-
-       <n0:case case_id="{case_id}" date_modified="...
-
-   Skip this step if the form updates an existing case but does not
-   register a case.
-
-8. Save the file, and restart Locust to test using your form submission.
+8. Restart Locust to test using your form submissions.
 
 
 Saving results
