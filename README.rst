@@ -8,7 +8,7 @@ based on `LocustIO <https://locust.io/>`_.
 Installation and setup
 ^^^^^^^^^^^^^^^^^^^^^^
 
- ::
+::
 
     $ pip install -r requirements.txt
 
@@ -45,7 +45,7 @@ Configuring and running
 Basic usage, for a single test user::
 
     $ export $(grep -v '^#' config.env | xargs)
-    $ locust -f form_submission.py --headless -u 1 -r 1
+    $ locust -f locustfiles/form_submission.py --headless -u 1 -r 1
 
 Leave off ``--headless`` to view results in the Locust web UI. See
 `docs`_ for options to set number of users, run time, etc.

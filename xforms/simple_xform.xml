@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<data xmlns="https://www.commcarehq.org/test/LocustPerfTesting/">
+    <foo/>
+    <bar/>
+    <jrx:meta xmlns:jrx="http://openrosa.org/jr/xforms">
+        <jrx:deviceID>LocustPerfTesting</jrx:deviceID>
+        <jrx:timeStart>2011-10-01T15:25:18.404-04</jrx:timeStart>
+        <jrx:timeEnd>2011-10-01T15:26:29.551-04</jrx:timeEnd>
+        <jrx:username>admin</jrx:username>
+        <jrx:userID>testy.mctestface</jrx:userID>
+        <jrx:instanceID>dd2f7684-548a-4165-91de-0533bdcec32c</jrx:instanceID>
+    </jrx:meta>
+</data>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<data name="ANC visit"
+      uiVersion="1"
+      version="1"
+      xmlns="http://openrosa.org/formdesigner/B7F9A7EA-E310-4673-B7DA-423BE63A34AA">
+    <visit_date>2020-08-21</visit_date>
+    <visit_number>1</visit_number>
+    <is_first_visit>yes</is_first_visit>
+    <lmp_date>2019-12-28</lmp_date>
+    <event_date>2019-12-28</event_date>
+    <visit_comment>Getting close</visit_comment>
+    <n0:case case_id="1e16a2e1-b0a0-42ee-92e1-4c43dca11171"
+             date_modified="2020-08-28T16:05:42.890+02"
+             user_id="3c6d579a8abdddd07c033d1725b10735"
+             xmlns:n0="http://commcarehq.org/case/transaction/v2">
+        <n0:update>
+            <n0:lmp_date>2019-12-28</n0:lmp_date>
+        </n0:update>
+    </n0:case>
+    <n1:meta xmlns:n1="http://openrosa.org/jr/xforms">
+        <n1:deviceID>Formplayer</n1:deviceID>
+        <n1:timeStart>2020-08-28T16:05:11.108+02</n1:timeStart>
+        <n1:timeEnd>2020-08-28T16:05:42.890+02</n1:timeEnd>
+        <n1:username>test</n1:username>
+        <n1:userID>3c6d579a8abdddd07c033d1725b10735</n1:userID>
+        <n1:instanceID>3ae89450-ab23-4406-8020-618d037e8fdf</n1:instanceID>
+        <n1:drift>0</n1:drift>
+    </n1:meta>
+</data>

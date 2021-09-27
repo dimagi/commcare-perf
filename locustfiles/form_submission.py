@@ -1,7 +1,12 @@
 import os
+from glob import glob
 from uuid import uuid4
+from xml.etree import ElementTree as ET
 
 from locust import HttpUser, between, task
+from locust.exception import LocustError
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class MobileUser(HttpUser):
@@ -30,17 +35,10 @@ class MobileUser(HttpUser):
         assert response.status_code == 200, response.text
 
     @task
-    def submit_form(self):
-        url = f'/a/{self.domain}/receiver/{self.app_id}/'
-        instance_id = str(uuid4())
-        data = xform.format(instance_id=instance_id).encode('utf-8')
-        auth = (os.environ['CCHQ_USERNAME'], os.environ['CCHQ_PASSWORD'])
-        headers = {'Content-Type': 'text/html; charset=UTF-8'}
-        response = self.client.post(
-            url, data, auth=auth, headers=headers,
-            name='receiver',
-        )
-        assert 200 <= response.status_code < 300, response.text
+    def submit_forms(self):
+        for filename in glob(os.sep.join((BASE_DIR, 'xforms', '*'))):
+            xform_tree = ET.parse(filename)
+            self._submit_xform_tree(xform_tree)
 
     def _log_in(self):
         url = f'/a/{self.domain}/login/'
@@ -69,19 +67,42 @@ class MobileUser(HttpUser):
             if app['copy_of'] == self.app_id
         )
 
+    def _submit_xform_tree(self, xform_tree: ET.ElementTree):
+        set_instance_id(xform_tree)
+        set_new_case_ids(xform_tree)
+        url = f'/a/{self.domain}/receiver/{self.app_id}/'
+        data = dump_xform_tree(xform_tree, 'utf-8')
+        auth = (os.environ['CCHQ_USERNAME'], os.environ['CCHQ_PASSWORD'])
+        headers = {'Content-Type': 'text/html; charset=UTF-8'}
+        response = self.client.post(
+            url, data, auth=auth, headers=headers,
+            name='receiver',
+        )
+        assert 200 <= response.status_code < 300, response.text
 
-xform = """<?xml version='1.0' ?>
-<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms"
-      xmlns="https://www.commcarehq.org/test/LocustPerfTesting/">
-    <foo/>
-    <bar/>
-    <meta>
-        <deviceID>LocustPerfTesting</deviceID>
-        <timeStart>2011-10-01T15:25:18.404-04</timeStart>
-        <timeEnd>2011-10-01T15:26:29.551-04</timeEnd>
-        <username>admin</username>
-        <userID>testy.mctestface</userID>
-        <instanceID>{instance_id}</instanceID>
-    </meta>
-</data>
-"""
+
+def set_instance_id(xform_tree: ET.ElementTree):
+    """
+    Assign a different instance ID to prevent duplicate IDs.
+    """
+    ns = {'jrx': 'http://openrosa.org/jr/xforms'}
+    instance_id = str(uuid4())
+    instance_id_elem = xform_tree.find('./jrx:meta/jrx:instanceID', ns)
+    if instance_id_elem is None:
+        raise LocustError('XForm meta instanceID missing or bad namespace')
+    instance_id_elem.text = instance_id
+
+
+def set_new_case_ids(xform_tree: ET.ElementTree):
+    """
+    Assign a different ID to new cases to prevent duplicate IDs.
+    """
+    ns = {'tx': 'http://commcarehq.org/case/transaction/v2'}
+    for case_elem in xform_tree.iterfind('./tx:case[tx:create]', ns):
+        case_id = str(uuid4())
+        case_elem.set('case_id', case_id)
+
+
+def dump_xform_tree(xform_tree: ET.ElementTree, encoding=None):
+    xform_root = xform_tree.getroot()
+    return ET.tostring(xform_root, encoding, xml_declaration=True)
