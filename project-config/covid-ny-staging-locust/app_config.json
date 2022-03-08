@@ -1,8 +1,5 @@
 {
-    "MOD_SKIP": {
-        "get_all_cases_info":"", "check_out_form":"", "get_all_contacts_info":""
-    },
-    "CASES_LIST_FILTER": {
+    "CASE_LIST_FILTER": {
         "all_cases_filter":"(patient_type = 'confirmed' or next_form = 'pui_form' or next_form = 'change_pui_status') and transfer_status != 'sent' and transfer_status != 'pending' and stub !='yes' and (current_status != 'closed')",
         "all_contacts_filter":"transfer_status != 'sent' and transfer_status != 'pending'"
     },
@@ -18,215 +15,278 @@
         "Monty", "Minnie", "Mack", "Strone", "Owen", "Lewis", "Kat", "Sal", "Joyce", "Tick",
         "Ty", "Ira", "Shee", "Marcus", "Sil", "Antro", "Mark", "Ette", "Poppa", "Tom"
     ],
-    "FUNC_USER_CHECK_OUT_FORM": {
-        "selections":"0", "title":"Proceed to Check Out"
-    },
-    "FUNC_USER_CHECK_IN_FORM": {
-        "selections":"0", "title":"Check In"
-    },
-    "FUNC_USER_CHECK_IN": {
-        "answers-key":"4", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
-    },
-    "FUNC_HOME_SCREEN": {
+    "FUNC_MAIN_SCREEN": {
         "title":"NY App - locust test"
     },
+    "FUNC_USER_CHECK_IN_FORM": {
+        "title":"Check In"
+    },
+    "FUNC_USER_CHECK_IN_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
     "FUNC_ALL_CASES_CASE_LIST": {
-        "selections":"6", "title":"All Cases"
+        "title":"All Cases"
     },
     "FUNC_ALL_OPEN_CASES_CASE_LIST": {
-        "selections":"4", "title":"All Open Cases"
+        "title":"All Open Cases"
     },
     "FUNC_ALL_CLOSED_CASES_CASE_LIST": {
-        "selections":"5", "title":"All Closed Cases"
+        "title":"All Closed Cases"
+    },
+    "FUNC_MY_CASES_CASE_LIST": {
+        "title":"My Cases"
+    },
+    "FUNC_VIEW_CASE_ASSIGNMENTS_CASE_LIST": {
+        "title":"View Case Assignments"
     },
     "FUNC_ALL_CONTACTS_CASE_LIST": {
-        "selections":"35", "title":"All Contacts"
+        "title":"All Contacts"
     },
     "FUNC_ALL_OPEN_CONTACTS_CASE_LIST": {
-        "selections":"33", "title":"All Open Contacts"
+        "title":"All Open Contacts"
     },
     "FUNC_ALL_CLOSED_CONTACTS_CASE_LIST": {
-        "selections":"34", "title":"All Closed Contacts"
+        "title":"All Closed Contacts"
     },
-    "FUNC_CASE_DETAILS": {
-        "selections":"6", "checkKey":"details", "checkLen":5
+    "FUNC_MY_CONTACTS_CASE_LIST": {
+        "title":"My Contacts: Require Follow-up"
     },
-    "FUNC_CI_FORM": {
-        "selections":"6", "subselections":"1", "title":"Case Investigation"
-    },
-    "FUNC_PART_OF_CLUSTER": {
-        "answer":"2", "ix":"14,0", "title":"Case Investigation"
-    },
-    "FUNC_HOSPITALIZED": {
-        "answer":"1", "ix":"16,7", "title":"Case Investigation"
-    },
-    "FUNC_HOSPITAL_NAME": {
-        "answer":"2", "ix":"16,8,0", "title":"Case Investigation"
-    },
-    "FUNC_CI_FORM_SUBMIT": {
-        "answers-key1":"9,2", "answers-value1":"2", "answers-key2":"14,0", "answers-value2":"2", "answers-key3":"16,7", "answers-value3":"1", "answers-key4":"16,8,0", "answers-value4":"2", "submitResponseMessage":"Form successfully saved!"
-    },
-    "FUNC_CM_CASE_DETAILS": {
-        "selections":"35", "checkKey":"details", "checkLen":1
-    },
-    "FUNC_CM_FORM": {
-        "selections":"35", "subselections":"1", "title":"Contact Monitoring"
-    },
-    "FUNC_VIEW_UPDATE_CONTACT_INFO": {
-        "answer":"1", "ix":"14", "title":"Contact Monitoring"
-    },
-    "FUNC_INVALID_PHONE_NUMBER": {
-        "answer":"2", "ix":"16,3", "title":"Contact Monitoring"
-    },
-    "FUNC_PROVIDER_NAME": {
-        "answer":"provider supervisor test name", "ix":"18,0", "title":"Contact Monitoring"
-    },
-    "FUNC_CM_FORM_SUBMIT": {
-        "answers-key1":"16,3", "answers-value1":"2", "answers-key2":"18,0", "answers-value2":"provider supervisor name test", "submitResponseMessage":"Form successfully saved!"
-    },
-    "FUNC_ID_FORM": {
-        "selections":"6", "subselections":"0", "title":"Identify Duplicate Patient"
-    }, 
-    "FUNC_ALTERNATE_PHONE_NUMBER": {
-        "answer":"2", "ix":"5", "title":"Identify Duplicate Patient"
-    }, 
-    "FUNC_ALTERNATE_PHONE_NUMBER_ENTER": {
-        "answer":"1111111111", "ix":"7,0", "title":"Identify Duplicate Patient"
-    }, 
-    "FUNC_ID_FORM_SUBMIT": {
-        "answers-key":"10", "answers-value":"1", "submitResponseMessage":"Form successfully saved!"
-    },
-    "FUNC_RNC_FORM": {
-        "selections":"6", "subselections":"2", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_TOTAL_NUM_PEOPLE": {
-        "answer":"3", "ix":"5,0", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_FIRST_NAME": {
-        "answer":"first", "ix":"5,2,0_0,2,1", "title":"Register New Contact(s)"
-    }, 
-    "FUNC_RNC_LAST_NAME": {
-        "answer":"last", "ix":"5,2,0_0,2,2", "title":"Register New Contact(s)"
-    }, 
-    "FUNC_RNC_SCHOOL_SETTING": {
-        "answer":"10", "ix":"5,2,0_0,2,16", "title":"Register New Contact(s)"
-    }, 
-    "FUNC_RNC_SCHOOL_PREK": {
-        "answer":"2", "ix":"5,2,0_0,2,19,0", "title":"Register New Contact(s)"
-    }, 
-    "FUNC_RNC_COLLEGE_UNIVERSITY": {
-        "answer":"2, 3", "ix":"5,2,0_0,2,19,0", "title":"Register New Contact(s)"
-    }, 
-    "FUNC_RNC_NAME_OF_SCHOOL": {
-        "answer":"2", "ix":"5,2,0_0,2,19,2,0", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_NAME_OF_UNIVERSITY": {
-        "answer":"2", "ix":"5,2,0_0,2,19,3,0", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_PREFERRED_LANGUAGE": {
-        "answer":"1", "ix":"5,2,0_0,2,21", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_LAST_DATE_TEST": {
-        "answer":"2021-01-06", "ix":"5,2,0_0,2,29", "title":"Register New Contact(s)"
-    },
-    "FUNC_RNC_FORM_SUBMIT": {
-        "answers-key1":"5,2,0_0,2,1", "answers-value1":"test-2 first name", "answers-key2":"5,2,0_0,2,2", "answers-value2":"test-2 last name", "answers-key3":"5,2,0_0,2,16", "answers-value3":"10", "answers-key4":"5,2,0_0,2,19,0", "answers-value4":"2, 3", "answers-key5":"5,2,0_0,2,19,2,0", "answers-value5":"2", "answers-key6":"5,2,0_0,2,19,3,0", "answers-value6":"2", "answers-key7":"5,2,0_0,2,21", "answers-value7":"1", "answers-key8":"5,2,0_0,2,29", "answers-value8":"2021-01-06", "submitResponseMessage":"Form successfully saved!"
-    },
-    "FUNC_CASE_CLAIM_SEARCH": {
-        "selections":"34", "title":"Search All Cases"
-    },
-    "FUNC_OMNI_SEARCH": {
-        "selections":"5", "title":"All Cases"
+    "FUNC_VIEW_CONTACT_ASSIGNMENTS_CASE_LIST": {
+        "title":"View Contact Assignments"
     },
     "FUNC_NEW_SEARCH_ALL_CASES_FORM": {
-        "selections":"2", "title":"Record Search"
+        "title":"Search Cases", "title2":"Record Search"
     },
     "FUNC_NEW_SEARCH_ALL_CASES": {
-        "selections":"2", "title":"Record Search" 
+        "title":"Search Cases", "title2":"Record Search"
     },
     "FUNC_NEW_SEARCH_ALL_CONTACTS_FORM": {
-        "selections":"18", "title":"Record Search" 
+        "title":"Search Contacts", "title2":"Record Search" 
     },
     "FUNC_NEW_SEARCH_ALL_CONTACTS": {
-        "selections":"18", "title":"Record Search"
+        "title":"Search Contacts", "title2":"Record Search" 
+    },
+    "FUNC_ALL_CASES_CASE_DETAILS": {
+        "checkKey":"details"
+    },
+    "FUNC_ALL_CASES_CASE_DETAILS_SUBMIT": {
+        "title":"All Cases"
+    },
+    "FUNC_CI_FORM": {
+        "title":"Case Investigation"
+    },
+    "FUNC_CI_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"State", "answer":"", "optional":"false", "title":"Case Investigation"},
+            {"question":"Race:", "answer":"5", "optional":"false", "title":"Case Investigation"},
+            {"question":"Street Address", "answer":"", "optional":"false", "title":"Case Investigation"},
+            {"question":"City", "answer":"", "optional":"false", "title":"Case Investigation"},
+            {"question":"Gender", "answer":"", "optional":"false", "title":"Case Investigation"},
+            {"question":"Preferred Language", "answer":"", "optional":"false", "title":"Case Investigation"},
+            {"question":"What date did you get tested?", "answer":"", "optional":"false", "title":"Case Investigation"},
+            {"question":"Occupation", "answer":"", "optional":"false", "title":"Case Investigation"}
+        ]
+    },
+    "FUNC_CI_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_ASSIGN_CASE_FORM": {
+        "title":"Assign or Reassign the Case"
+    },
+    "FUNC_ASSIGN_CASE_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Permanently assign the case to a different staff member", "answer":"3", "optional":"false", "title":"Assign or Reassign the Case"},
+            {"question":"Permanently reassign case to this staff member", "answer":"", "optional":"false", "title":"Assign or Reassign the Case"}
+        ]
+    },
+    "FUNC_ASSIGN_CASE_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_CLOSE_PATIENT_RECORD_FORM": {
+        "title":"Close the Patient Record"
+    },
+    "FUNC_CLOSE_PATIENT_RECORD_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Are you sure you want to close this record?", "answer":"", "optional":"true", "title":"Close the Patient Record"},
+            {"question":"Confirm the patient's outcome or final disposition", "answer":"1", "optional":"true", "title":"Close the Patient Record"},
+            {"question":"Are you sure you want to reopen it?", "answer":"", "optional":"true", "title":"Close the Patient Record"}
+        ]
+    },
+    "FUNC_CLOSE_PATIENT_RECORD_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_ALL_CONTACTS_CASE_DETAILS": {
+        "checkKey":"details"
+    },
+    "FUNC_ALL_CONTACTS_CASE_DETAILS_SUBMIT": {
+        "title":"All Contacts"
+    },
+    "FUNC_CM_FORM": {
+        "title":"Contact Monitoring"
+    },
+    "FUNC_CM_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"View/Update the rest of the Contact's information", "answer":"1", "optional":"true", "title":"Contact Monitoring"},
+            {"question":"Interviewer Name", "answer":"", "optional":"false", "title":"Contact Monitoring"},
+            {"question":"Race:", "answer":"2", "optional":"false", "title":"Contact Monitoring"},
+            {"question":"Occupation", "answer":"", "optional":"false", "title":"Contact Monitoring"}
+        ]
+    },
+    "FUNC_CM_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+
+
+
+
+    "FUNC_SEARCH_FOR_DUPLICATE_PATIENT_FORM": {
+        "title":"Search for Duplicate Patients",
+        "title2":"Record Search"
+    },
+    "FUNC_SEARCH_FOR_DUPLICATE_PATIENT_SUBMIT": {
+        "title":"Search All Cases"
+    },
+    "FUNC_SEARCH_FOR_DUPLICATE_PATIENT_CASE_DETAILS": {
+        "checkKey":"details"
+    },
+    "FUNC_SEARCH_FOR_DUPLICATE_PATIENT_CASE_DETAILS_SUBMIT": {
+        "title":"Search for Duplicate Patients"
+    },
+    "FUNC_IDENTIFY_DUPLICATE_PATIENT_FORM": {
+        "title":"Identify Duplicate Patient"
+    },
+    "FUNC_IDENTIFY_DUPLICATE_PATIENT_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"The selected patient is a duplicate of the current patient", "answer":"", "optional":"false", "title":"Identify Duplicate Patient"}
+        ]
+    },
+    "FUNC_IDENTIFY_DUPLICATE_PATIENT_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+
+
+
+
+
+    "FUNC_ASSIGN_CONTACT_FORM": {
+        "title":"Assign or Re-Assign Contact"
+    },
+    "FUNC_ASSIGN_CONTACT_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Permanently assign the contact to a different staff member", "answer":"3", "optional":"false", "title":"Assign or Re-Assign Contact"},
+            {"question":"Permanently reassign contact to this staff member", "answer":"", "optional":"false", "title":"Assign or Re-Assign Contact"}
+        ]
+    },
+    "FUNC_ASSIGN_CONTACT_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_CLOSE_CONTACT_RECORD_FORM": {
+        "title":"Close the Contact Record"
+    },
+    "FUNC_CLOSE_CONTACT_RECORD_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Are you sure you want to close this record?", "answer":"", "optional":"true", "title":"Close the Contact Record"},
+            {"question":"Confirm the Contact's outcome or final disposition", "answer":"1", "optional":"true", "title":"Close the Contact Record"},
+            {"question":"Are you sure you want to reopen it?", "answer":"", "optional":"true", "title":"Close the Contact Record"}
+        ]
+    },
+    "FUNC_CLOSE_CONTACT_RECORD_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_RNC_FORM": {
+        "title":"Register New Contact(s)"
+    },
+    "FUNC_RNC_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Total number of people in the household (including patient)", "answer":"1", "optional":"false", "title":"Register New Contact(s)"},
+            {"question":"First name", "answer":"Locust Test First", "optional":"false", "title":"Register New Contact(s)"},
+            {"question":"Last name", "answer":"Locust Test Last", "optional":"false", "title":"Register New Contact(s)"},
+            {"question":"Gender", "answer":"2", "optional":"false", "title":"Register New Contact(s)"},
+            {"question":"Relationship to case:", "answer":"", "optional":"false", "title":"Register New Contact(s)"},
+            {"question":"Occupation", "answer":"", "optional":"false", "title":"Register New Contact(s)"}
+        ]
+    },
+    "FUNC_RNC_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_BU_CONTACTS_FORM": {
-        "selections":"36", "title":"Bulk Update Contacts"
+        "title":"Bulk Update Contacts"
     },  
-    "FUNC_BU_CONTACTS_TYPE_OF_BULK": {
-        "answer":"1", "ix":"2,0", "title":"Bulk Update Contacts"
-    },
-    "FUNC_BU_SELECT_WITHOUT_PRIMARY": {
-        "answer":"None", "ix":"3,1,6", "title":"Bulk Update Contacts"
-    },
-    "FUNC_BU_CONTACTS_MATCHING": {
-        "answer":"1", "ix":"3,5", "title":"Bulk Update Contacts"
-    },
-    "FUNC_BU_CONTACTS_ASSIGN_ACTION": {
-        "answer":"1", "ix":"6,0", "title":"Bulk Update Contacts"
-    },
-    "FUNC_BU_SELECT_OWNER": {
-        "answer":"1", "ix":"6,1,5", "title":"Bulk Update Contacts"
-    },
-    "FUNC_BU_UPDATE_FEWER_CONTACTS": {
-        "answer":"2", "ix":"9,1", "title":"Bulk Update Contacts"
-    },
-    "FUNC_BU_NUMBER_OF_UPDATES": {
-        "answer":"1", "ix":"9,2", "title":"Bulk Update Contacts"
+    "FUNC_BU_CONTACTS_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Which type of bulk action would you like to take?", "answer":"", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Select only open contacts", "answer":"None", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Select only contacts with a phone number.", "answer":"None", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Select only contacts without a primary owner", "answer":"None", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Select only cases without a temporary owner", "answer":"None", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Search for contacts matching this criteria", "answer":"", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Assign to New Primary Owner", "answer":"", "optional":"false", "title":"Bulk Update Contacts"},
+            {"question":"Select the new Primary Owner", "answer":"1", "optional":"false", "title":"Bulk Update Contacts"}
+        ]
     },
     "FUNC_BU_CONTACTS_FORM_SUBMIT": {
-        "answers-key-type-of-bulk":"2,0", "answers-value-type-of-bulk":"1",
-        "answers-key-select-without-primary":"3,1,6", "answers-value-select-without-primary":"None",
-        "answers-key-contacts-matching":"3,5", "answers-value-contacts-matching":"1",
-        "answers-key-assign-action":"6,0", "answers-value-assign-action":"1",
-        "answers-key-select-owner":"6,1,5", "answers-value-select-owner":"1",
-        "answers-key-update-fewer-contacts":"9,1", "answers-value-update-fewer-contacts":"2",
-        "answers-key-number-of-updates":"9,2", "answers-value-number-of-updates":"1",
         "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_UPDATE_CONTACTS_FORM_SUBMIT": {
         "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_BU_CASES_FORM": {
-        "selections":"39", "title":"Bulk Update Cases"
+        "title":"Bulk Update Cases"
     },
-    "FUNC_BU_CASES_TYPE_OF_BULK": {
-        "answer":"1", "ix":"2,0", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_UNCHECK_OPEN_CASES": {
-        "answer":"None", "ix":"3,1,1", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_UNCHECK_VALID_PHONE": {
-        "answer":"None", "ix":"3,1,2", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_UNCHECK_CONFIRMED_CASES": {
-        "answer":"None", "ix":"3,1,3", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_UNCHECK_INITIAL_INTERVIEW": {
-        "answer":"None", "ix":"3,1,4", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_UNCHECK_PRIMARY_OWNER": {
-        "answer":"None", "ix":"3,1,6", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_MATCHING": {
-        "answer":"1", "ix":"3,5", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_ASSIGN_PRIMARY": {
-        "answer":"1", "ix":"6,0", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_SELECT_OWNER": {
-        "answer":"1", "ix":"6,1,5", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_UPDATE_FEWER_CASES": {
-        "answer":"2", "ix":"9,1", "title":"Bulk Update Cases"
-    },
-    "FUNC_BU_CASES_NUMBER_OF_UPDATES": {
-        "answer":"1", "ix":"9,2", "title":"Bulk Update Cases"
+    "FUNC_BU_CASES_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Which type of bulk action would you like to take?", "answer":"", "optional":"false", "title":"Bulk Update Cases"},
+            {"question":"Select only open cases", "answer":"None", "optional":"false", "title":"Bulk Update Cases"},
+            {"question":"Select only cases with a valid phone number.", "answer":"None", "optional":"false", "title":"Bulk Update Cases"},
+            {"question":"Search for cases matching this criteria", "answer":"", "optional":"false", "title":"Bulk Update Cases"},
+            {"question":"Assign to New Primary Owner", "answer":"", "optional":"false", "title":"Bulk Update Cases"},
+            {"question":"Select the new Primary Owner(s)", "answer":"3", "optional":"false", "title":"Bulk Update Cases"}
+        ]
     },
     "FUNC_BU_CASES_FORM_SUBMIT": {
-        "answers-key0":"2,0", "answers-value0":"1", "answers-key1":"3,1,1", "answers-value1":"None", "answers-key2":"3,1,2", "answers-value2":"None", "answers-key3":"3,1,3", "answers-value3":"None", "answers-key4":"3,1,4", "answers-value4":"None", "answers-key5":"3,1,6", "answers-value5":"None", "answers-key6":"3,5", "answers-value6":"1", "answers-key7":"6,0", "answers-value7":"1", "answers-key8":"6,1,5", "answers-value8":"1", "answers-key9":"9,1", "answers-value9":"2", "answers-key10":"9,2", "answers-value10":"1", "submitResponseMessage":"Form successfully saved!"
+        "submitResponseMessage":"Form successfully saved!"
     },
     "FUNC_UPDATE_CASES_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_MY_TEAM_FORM": {
+        "title":"My Team"
+    },
+    "FUNC_MY_TEAM_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Select the Team Member whose contact info you'd like to see:", "answer":"1", "optional":"false", "title":"My Team"}
+        ]
+    },
+    "FUNC_MY_TEAM_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_RNC_NO_INDEX_FORM": {
+        "title":"Register New Contact(s) without Index Case"
+    },
+    "FUNC_RNC_NO_INDEX_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"How many new contacts do you want to record?", "answer":"1", "optional":"false", "title":"Register New Contact(s) without Index Case"},
+            {"question":"First name", "answer":"Locust Register No Index Test First", "optional":"false", "title":"Register New Contact(s) without Index Case"},
+            {"question":"Last name", "answer":"Locust Register No Index Test Last", "optional":"false", "title":"Register New Contact(s) without Index Case"},
+            {"question":"Gender", "answer":"2", "optional":"false", "title":"Register New Contact(s) without Index Case"},
+            {"question":"Relationship to case:", "answer":"3", "optional":"false", "title":"Register New Contact(s) without Index Case"},
+            {"question":"Occupation", "answer":"", "optional":"false", "title":"Register New Contact(s) without Index Case"}
+        ]
+    },
+    "FUNC_RNC_NO_INDEX_FORM_SUBMIT": {
+        "submitResponseMessage":"Form successfully saved!"
+    },
+    "FUNC_RNCASE_FORM": {
+        "title":"Register a New Case"
+    },
+    "FUNC_RNCASE_FORM_QUESTIONS": {
+        "questions":[
+            {"question":"Complete Full Registration", "answer":"", "optional":"false", "title":"Register a New Case"},
+            {"question":"Patient First Name", "answer":"Locust Register New Case First", "optional":"false", "title":"Register a New Case"},
+            {"question":"Patient Last Name", "answer":"Locust Register New Case Last", "optional":"false", "title":"Register a New Case"}
+        ]
+    },
+    "FUNC_RNCASE_FORM_SUBMIT": {
         "submitResponseMessage":"Form successfully saved!"
     }
 }
