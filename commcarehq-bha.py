@@ -613,6 +613,7 @@ class WorkloadModelSteps(TaskSet):
                 self.interrupt()
             self.questionTree=data['tree']
             self.session_id=data['session_id']
+            logging.info("ddaaa---->>>"+str(data['title']))
             logging.info("search-and-admit-client==request_admission_review_form::sessionId::"+self.session_id)
             assert(data['title'] == self.parent.FUNC_REQUEST_ADMISSION_REVIEW['title'])
             assert('instanceXml' in data)
@@ -2530,7 +2531,8 @@ class LoginCommCareHQWithUniqueUsers(HttpUser):
     else:
         ###wait_time = between(45, 90)
         ###wait_time = between(30, 60)
-        wait_time = between(15, 30)
+        ###wait_time = between(15, 30)
+        wait_time = between(120, 180)
 
     with open("project-config/"+project+"/config.yaml") as f:
         config = yaml.safe_load(f)
